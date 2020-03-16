@@ -1,0 +1,25 @@
+<form onsubmit="stringSearch(); return false;">
+    <div class="input-group mt-3 mb-3">
+      <div class="input-group-prepend">
+        <button type="button" class="btn btn-outline-secondary" onclick="insertKrossData()">
+          Добавить данные
+        </button>
+       <!--  <button type="button" class="btn btn-outline-secondary dropdown-toggle" data-toggle="dropdown" id="bps">
+          Телефон
+        </button> -->
+        <div class="input-group-prepend">
+           <select class="btn btn-outline-secondary" name="parameterSearch" id="parameterSearch">
+        <option class="dropdown-item" value="data">Данные</option>
+        <option class="dropdown-item" selected  value="number">Телефон</option>
+        <option class="dropdown-item" value="sub_name">Имя</option>
+        <option class="dropdown-item" value="comment">Комментарии</option>
+        <option class="dropdown-item" value="cabinet">Кабинет</option>
+      </select>
+        </div>
+      </div>
+      <input type="text" class="form-control" placeholder="Строка поиска..." name="searchString" id="searchString">
+      <div class="input-group-append">
+    <button class="btn btn-outline-secondary" type="submit">Поиск</button>
+  </div>
+    </div>
+  </form>

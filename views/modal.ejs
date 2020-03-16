@@ -1,0 +1,104 @@
+<!-- The Modal -->
+<div class="modal fade bd-example-modal-xl" id="myModalCRUD" data-backdrop="static" data-keyboard="false">
+  <div class="modal-dialog modal-xl">
+    <div class="modal-content">
+
+      <!-- Modal Header -->
+      <div class="modal-header">
+        <h4 class="modal-title" id="myModalCRUDTitle"></h4>
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+      </div>
+
+      
+      <div class="modal-body row"><!-- Modal body -->
+<div class="col-sm-10" style="border-right: 5px solid #ccc;">
+        <form id="myModalForm">
+  <div class="form-group row">
+    <label class="control-label col-sm-2" for="data">Данные:</label>
+    <div class="col-sm-10">
+    <input type="text" class="form-control" data-table-id="" id="data" placeholder="" name="data" required disabled="disabled">
+  </div></div>
+
+  <div  class="form-group row perekross" hidden="hidden">
+    <label class="control-label" for="data">Кроссировать данные на:</label>
+<div id="winperekross" class="col-sm-12"></div>
+</div>
+
+  <div class="blockbtn form-group row">
+    <label class="control-label col-sm-2" for="raspred">Распределение:</label>
+    <div class="col-sm-10">
+    <input type="text" class="form-control autoListData" data-table="raspred" data-table-id="" id="raspred" placeholder="" name="raspred" required>
+  </div></div>
+
+  <div class="blockbtn form-group row">
+    <label class="control-label col-sm-2" for="number">Телефон:</label>
+    <div class="col-sm-10">
+    <input type="text" class="form-control autoListData"  data-table="ncatalog" data-table-id="" id="number" placeholder="" name="number" required>
+  </div></div>
+
+    <div class="blockbtn form-group row">
+    <label class="control-label col-sm-2" for="ncatalog">Имя абонента:</label>
+    <div class="col-sm-10">
+    <input type="text" class="form-control autoListData" data-table="ncatalog" data-table-id="" id="ncatalog" placeholder="" name="ncatalog" required>
+  </div></div>
+
+    <div class="blockbtn form-group row">
+    <label class="control-label col-sm-2" for="type">Тип:</label>
+    <div class="col-sm-10">
+    <input type="text" class="form-control autoListData" data-table="type" data-table-id="" id="type" placeholder="" name="type" required>
+  </div></div>
+
+    <div class="blockbtn form-group row">
+    <label class="control-label col-sm-2" for="comment">Комментарии:</label>
+    <div class="col-sm-10">
+    <input type="text" class="form-control textKrossData" id="comment" placeholder="" name="comment" required>
+  </div></div>
+
+    <div class="blockbtn form-group row">
+    <label class="control-label col-sm-2" for="cabinet">Кабинет:</label>
+    <div class="col-sm-10">
+    <input type="text" class="form-control textKrossData" id="cabinet" placeholder="" name="cabinet" required>
+  </div></div>
+
+
+ <!--  <div class="form-group form-check">
+    <label class="form-check-label">
+      <input class="form-check-input" type="checkbox" name="remember" required> I agree on blabla.
+      <div class="valid-feedback">Valid.</div>
+      <div class="invalid-feedback">Check this checkbox to continue.</div>
+    </label>
+  </div>
+  <button type="submit" class="btn btn-primary">Submit</button> -->
+</form>
+</div>
+
+<div class="col-sm-2">
+  <button type="button" class="blockbtn btn btn-success btn-block" onclick="confirmInsert()" id="confirmInsert" hidden>Вставить</button>
+  <button type="button" class="blockbtn btn btn-success btn-block" onclick="confirmUpdate()" id="confirmUpdate">Обновить</button>
+  <button type="button" class="blockbtn btn btn-danger btn-block" onclick="clearData()" id="clearData">Очистить</button>
+  <button type="button" class="blockbtn btn btn-warning btn-block perekr" onclick="pereKross()" id="perekross">Кроссировать</button>
+</div>
+
+      </div><!-- Modal body -->
+
+      <!-- Modal footer -->
+      <div class="modal-footer">
+        <div class="mr-auto dropup"><button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">Таблицы</button>
+          <div class="dropdown-menu" style="background-color: coral;" >
+            <a class="dropdown-item" href="#" onclick="freenumber('number')"><span>Свободные номера</span></a>
+            <a class="dropdown-item" href="#" onclick=" staCRUD('sub', 'Абоненты')"><span>Абоненты</span></a>
+            <a class="dropdown-item" href="#" onclick=" staCRUD('unit', 'Управления')"><span>Управления</span></a>
+            <a class="dropdown-item" href="#" onclick=" staCRUD('department', 'Отделы/Бюро')"><span>Отделы/Бюро</span></a>
+            <a class="dropdown-item" href="#" onclick=" staCRUD('filial', 'Филиалы')"><span>Филиалы</span></a>
+            <a class="dropdown-item" href="#" onclick=" staCRUD('area', 'Площадки')"><span>Кроссовые журналы</span></a>
+            <a class="dropdown-item" href="#" onclick=" staCRUD('type', 'Типы')"><span>Типы</span></a>
+            <a class="dropdown-item" href="#" onclick=" staCRUD('raspred', 'Распределение')"><span>Распределение</span></a>
+            <a class="dropdown-item" href="#" onclick=" staCRUD('sector', 'ТЕСТ Сектор')"><span>ТЕСТ Сектор</span></a>
+          </div>
+        </div>
+        <div><button type="button" class="btn btn-danger" data-dismiss="modal">Закрыть</button></div>
+      </div>
+
+    </div>
+  </div>
+</div>

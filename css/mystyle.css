@@ -1,0 +1,67 @@
+#overlay {
+  position: fixed; /* Sit on top of the page content */
+  display: none; /* Hidden by default */
+  width: 100%; /* Full width (cover the whole page) */
+  height: 100%; /* Full height (cover the whole page) */
+  top: 0; 
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(255,0,0,1); /* Black background with opacity */
+  z-index: 20000; /* Specify a stack order in case you're using a different order for other elements */
+  cursor: pointer; /* Add a pointer on hover */
+  
+
+}
+.overlay a {
+  padding: 8px;
+  text-decoration: none;
+  font-size: 36px;
+  color: red;
+  display: block; /* Display block instead of inline */
+  transition: 0.3s; /* Transition effects on hover (color) */
+}
+
+/* When you mouse over the navigation links, change their color */
+.overlay a:hover, .overlay a:focus {
+  color: #f1f1f1;
+}
+.overlay .closebtn {
+  position: absolute;
+  top: 30px;
+  right: 10%;
+  font-size: 20px;
+}
+#alertoverlay{
+  position: absolute;
+  top: 30%;
+  left: 50%;
+  font-size: 40px;
+  color: white;
+  transform: translate(-50%,-50%);
+  -ms-transform: translate(-50%,-50%);
+}
+/**/
+.icon {
+        font-size: 1.2em;
+        padding: 0px 5px 5px 5px;
+        height: 1.0em;
+        width: 0.8em;
+        color: #1E90FF;
+        /*background-color: #0040ff;*/
+        position: relative;
+        text-align: center;
+    }
+.icon-wite {
+        font-size: 1.2em;
+        padding: 0px 5px 5px 5px;
+        height: 1.0em;
+        width: 0.8em;
+        color:  #A9A9A9;
+        /*background-color: #0040ff;*/
+        position: relative;
+        text-align: center;
+    }       
+/*#pagin  a {
+  font: 35px "Lucida Grande", Helvetica, Arial, sans-serif;
+}
