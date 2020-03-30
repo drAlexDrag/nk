@@ -1,9 +1,8 @@
 $(document).ready(function(){
 	if (($('#adm').text())!=1){
     $(".admin").remove();}
-    fetchData(1);
     $('[data-toggle="popover"]').popover();
-
+    fetchData(1);
   });
 function catalogOpen()
 { 
@@ -60,6 +59,7 @@ $(document).on('click', 'li.page-item > a.page-link',function(){
 function fetchData(page)//Загрузка начальной страницы
 {
   $("#modalWindow").load("/views/modal.ejs");
+  $("#modalWindowCat").load("/views/modal_cat.ejs");
   $("#search").load("/views/search_form.ejs");
   var objArea=paramArea();
   $.ajax({
@@ -263,53 +263,6 @@ $('#result_auto').remove();
     }
   });
 }
-// $(document).on('click', '.edit_data', function(){
-//   var data_id = $(this).data("id");
-//   var action= "loadData";
-//   console.log(data_id);
-//   document.getElementById("myModalForm").reset();
-//   $('#confirmInsert').attr('hidden','hidden');
-//   $('.perekross').attr('hidden','hidden');
-//   $('#confirmUpdate').removeAttr('hidden');
-//       $('#clearData').removeAttr('hidden');
-//       $('#pereKross').removeAttr('hidden');
-//   $.ajax({
-//     url:"crud.php",
-//     method:"POST",
-//     data:{data_id:data_id, action:action},
-//     dataType:"json",
-//     success:function(data)
-//     {
-//       console.log(data);
-//       $('#myModalCRUDTitle').html("Редактируем данные №: "+data.data+" кросса "+data.area["area_name"]);
-//       $('#data').attr({"disabled":'disabled'});
-//       $('#data').attr({"data-table-id":data.id});
-//       $('#data').val(data.data);
-
-//       $('#raspred').attr({"data-table-id":data.raspred["id"]});
-//       $('#raspred').val(data.raspred["raspred_name"]);
-
-//       $('#number').attr({"data-table-id":data.ncatalog["id"]});
-//       $('#number').val(data.ncatalog["ncatalog_number"]);
-//       // $('#number').val(data.number);
-
-//       $('#ncatalog').attr({"data-table-id":data.ncatalog["id"]});
-//       $('#ncatalog').val(data.ncatalog["ncatalog_name"]);
-
-//       $('#type').attr({"data-table-id":data.type["id"]});
-//       $('#type').val(data.type["type_name"]);
-
-//       $('#comment').val(data.comment);
-//       $('#cabinet').val(data.ncatalog["ncatalog_cabinet"]);
-//       $('#myModalCRUD').modal('show');
-//     },
-//     error:function(data)
-//     {
-
-//     }
-//   });
-// });
-
 
 $(document).on('click', '.textKrossData', function(){$('#result').remove();});
 $(document).on('click', '.autoListData', function(){
@@ -346,7 +299,7 @@ $(document).on('keyup', '.autoListData', function(){//потом передел�
   idinput='#'+idinput;
   $(idinput).attr({"data-table-id":""});
   $('#result').remove();
-  $(idinput).addClass('alert alert-danger');
+  $(idinput).addClass('alert alert-danger');btnblock();
   autoListData(tablename, idinput, query, columnname, iddatatable, input);
 });
 function autoListData(tablename, idinput, query, columnname, iddatatable, input) {
@@ -377,11 +330,13 @@ function autoListData(tablename, idinput, query, columnname, iddatatable, input)
 
       var idvariable='#'+tablename+'Id';
       $(idvariable).val('');
+      btnblock();
     }
     if ($("div").is("#resultreturt")){
 
       var idvariabl='#'+tablename+'Id';
       $(idvariabl).val('');
+      btnblock();
     }
   }
 // });
@@ -389,7 +344,20 @@ function autoListData(tablename, idinput, query, columnname, iddatatable, input)
  // )
 // }
 }
+function btnblock(){
+
+    if(!($("input").hasClass('alert-danger')))
+    {
+      console.log("Можно добавить данные");
+      // $('#result_auto').remove();
+      $(".btn-block").show(1000);
+    }else{
+      console.log("Нельзя добавить данные");
+      $(".btn-block").hide(1000);
+    }
+}
 function updateKrossData(updateData){
+  // debugger;
   var idinput=updateData.getAttribute('data-idinput');
   if (idinput=="number"){
     var idinput="#"+idinput;
@@ -413,7 +381,7 @@ function updateKrossData(updateData){
   $(idinput).val(updateData.getAttribute('data-value'));
   $(idinput).removeClass('alert alert-danger');
   }
-$('#result').remove();
+$('#result').remove();btnblock();
 }
 
 function confirmUpdate() {
@@ -428,7 +396,8 @@ function confirmUpdate() {
     comment: $('#comment').val(),
     cabinet: $('#cabinet').val()
   }
-  var updateKrossData = JSON.stringify(updateKrossData);console.trace();
+  var updateKrossData = JSON.stringify(updateKrossData);
+  console.trace();
   // alert (updateKrossData);
   $.ajax({
     url:"crud.php",
@@ -503,15 +472,14 @@ function dangeralert(){
 ////////////////////////////////////////////////////////////////////////////////////
 //////////////////////////Очистка данных////////////////////////////////////////////
 function clearData(){
-  alertoverlay ();
-  $("#closeAlertoverlay").hide();
-  $.ajax({
-    url: 'list_type.php',
-    success: function(data) {
-      $('#alertoverlay').html(data);
-    }
-  });
+  var header='<div>Необходимо выбрать тип связи, который будет присвоен\
+   данным после выполнения ОЧИСТКИ</div><hr>';
+    var button='<div><button type="button" class="btn btn-danger btn-block"\
+       onclick="confirmDataClear()">Очистить</button><button type="button"\
+        class="btn btn-default btn-block" onclick="off()" >Отмена</button></div>';
+  select_type(header, button);
 }
+
 function confirmDataClear() {
   // body...
   var clearKrossData = {
@@ -519,9 +487,9 @@ function confirmDataClear() {
     data: $('#data').val(),
     ncatalog: $("#ncatalog").attr('data-table-id')
   }
+  var selectTypeId=confirm_type();
   var clearKrossData = JSON.stringify(clearKrossData);
-  var x = document.getElementById("param_type");
-  var selectTypeId=(x.options[x.selectedIndex].index)+1;
+  
   var action="clearData";
   $.ajax({
       // url: 'dataexecute.php',
@@ -536,6 +504,47 @@ function confirmDataClear() {
         $('#myModalCRUD').modal('hide');
       }
     });
+}
+////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////
+
+//////////////////////////Запрос типа данных////////////////////////////////////////
+function select_type(header, button) {
+  // body...
+   alertoverlay ();
+  $("#closeAlertoverlay").hide();
+  $.ajax({
+    url: 'list_type.php',
+    success: function(data) {
+      $('#alertoverlay').html(header+data+button);
+    }
+  });
+}
+function confirm_type() {
+  // body...
+  var x = document.getElementById("param_type");
+  var selectTypeId=(x.options[x.selectedIndex].index)+1;
+  return(selectTypeId);
+}
+////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////Запрос распределения//////////////////////////////////////
+function select_raspred(header, button) {
+  // body...
+   alertoverlay ();
+  $("#closeAlertoverlay").hide();
+  $.ajax({
+    url: 'list_raspred.php',
+    success: function(data) {
+      $('#alertoverlay').html(header+data+button);
+    }
+  });
+}
+function confirm_raspred() {
+  // body...
+  var x = document.getElementById("param_raspred");
+  var selectRaspredId=(x.options[x.selectedIndex].index)+1;
+  return(selectRaspredId);
 }
 ////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////
@@ -558,7 +567,8 @@ function pereKross() {
   });
 
 }
-$(document).on('keyup', '#pereKrossOut', function(){
+function searchData() {
+  // body...
   var action="search_pereKross";
   var objArea=paramArea();
   $.ajax({
@@ -569,21 +579,217 @@ $(document).on('keyup', '#pereKrossOut', function(){
       $('#resultSearch').html(data);
     }
   });
-});
+}
+
+function select_typePK(pereKrossOut) {
+  // body...
+  var header ='<div>Необходимо выбрать тип связи, который будет присвоен\
+   СТАРЫМ данным после выполнения перекроссировки</div><hr>'
+  var button ='<div><button type="button" class="btn btn-danger btn-block"\
+       onclick="confirmPereKross('+pereKrossOut+')">Выполнить перекроссировку</button><button type="button"\
+        class="btn btn-default btn-block" onclick="off()" >Отмена</button></div>';
+   select_type(header, button);
+}
 function confirmPereKross(pereKrossOut) {
   // body...
   var objArea=paramArea();
+  var dataName=($('#pereKrossOut').val());
   var action="confirm_pereKross";
+  var selectTypeId=confirm_type();
   pereKrossIn=$('#pereKrossIn').val();
   $.ajax({
     url:"crud.php",
     method:"POST",
-    data: {pereKrossIn:pereKrossIn, pereKrossOut:pereKrossOut, action:action, areaId:objArea.id},
+    data: {dataName:dataName, pereKrossIn:pereKrossIn, pereKrossOut:pereKrossOut, selectTypeId:selectTypeId, action:action, areaId:objArea.id},
     success:function(data){
-      $('#resultSearch').html(data);
+      off();
+      $('#content').html(data);
+      $('#myModalCRUD').modal('hide');
     }
   });
-  alert($('#pereKrossIn').val()+"----->>>>>"+pereKrossOut);
+  // alert($('#pereKrossIn').val()+"----->>>>>"+pereKrossOut);
+}
+////////////////////////////////////////////////////////////////////////////////////
+
+////////////////////////////Копирование данных//////////////////////////////////////
+function select_raspredCopy(pereKrossOut) {
+  // body...
+  var header = '<div>Необходимо выбрать тип Распределения, который будет присвоен на новых\
+   данных после выполнения КОПИРОВАНИЯ</div><hr>'
+   var button ='<div><button type="button" class="btn btn-danger btn-block"\
+       onclick="confirmCopy('+pereKrossOut+')">Выполнить копирование данных</button><button type="button"\
+        class="btn btn-default btn-block" onclick="off()" >Отмена</button></div>';
+   select_raspred(header, button);
+}
+function confirmCopy(pereKrossOut) {
+  // body...
+  var objArea=paramArea();
+  var dataName=($('#pereKrossOut').val());
+  var action="confirm_copy";
+  var selectRaspredId=confirm_raspred();
+  pereKrossIn=$('#pereKrossIn').val();
+  $.ajax({
+    url:"crud.php",
+    method:"POST",
+    data: {dataName:dataName, pereKrossIn:pereKrossIn, pereKrossOut:pereKrossOut, selectRaspredId:selectRaspredId, action:action, areaId:objArea.id},
+    success:function(data){
+      off();
+      $('#content').html(data);
+      $('#myModalCRUD').modal('hide');
+     
+    }
+  }); 
+  // alert(pereKrossOut);
+}
+//////////////////////Edit Catalog//////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////
+function loadData(page){
+edit_catalog();
+  };
+function edit_catalog() {
+  $.ajax({
+    url:"/editcatalog/ecatalog_phone.php",
+    method:"POST",
+    // data: {dataName:dataName, pereKrossIn:pereKrossIn, pereKrossOut:pereKrossOut, selectRaspredId:selectRaspredId, action:action, areaId:objArea.id},
+    success:function(data){
+      // off();
+      $('#content').html(data);
+      // $('#myModalCRUD').modal('hide');
+     
+    }
+  }); 
+}
+function unitCatalog(id) {
+  // var unit_id = id;
+  // alert (id);
+  $.ajax({
+    url:"/editcatalog/ecatalog_unit.php",
+    method:"POST",
+    data:{unit_id:id},
+    success:function(data){
+      $('#content').html(data);
+sort_table();
+    }
+  });
+}
+function departmentCatalog(unitid, depid) {
+  $.ajax({
+    url:"/editcatalog/ecatalog_department.php",
+    method:"POST",
+    data:{unit_id:unitid, department_id:depid},
+    success:function(data){
+      $('#content').html(data);
+      sort_table();
+    }
+  });
+}
+function sort_table() {
+  $( ".row_drag" ).sortable({
+        delay: 100,
+        stop: function() {
+            var selectedRow = new Array();
+
+            $('.row_drag>tr').each(function() {
+                selectedRow.push($(this).attr("id"));
+
+                // console.log(selectedRow+"vis"+$(this).data("vis"));
+            });
+           // alert(selectedRow);
+           // console.log($('.row_drag>tr').length);
+           
+
+        }
+    });
+}
+    
+    function authorityStart() {
+          
+      authorityRemove();
+texts = document.querySelectorAll(".row_drag>tr");
+           suball = texts.length;
+    arrtext = Array.from(texts);
+console.log(arrtext);
+    var i = 0;
+    for(; i < suball; i++){
+        var co = i;
+        // $(this).setAttribute('data-authority', i);
+// $(".row_drag>tr").attr("data-authority", i);
+        $(arrtext[co]).append('<td class="rem">'+co+'</td>');
+        console.log(arrtext[co]);
+    }
+  var i = 0;  
+ $('.row_drag>tr').each(function() { 
+$(this).attr("data-authority", i);
+console.log(i);
+i++;
+            }); 
+
+}
+    function authorityRemove() {
+texts = document.querySelectorAll(".row_drag>tr>.rem");
+           suball = texts.length;
+    arrtext = Array.from(texts);
+    // $('#span').append(suball);
+    var i = 0;
+    for(; i < suball; i++){
+        var co = i;
+        $(arrtext[co]).remove();
+    }
+}
+function authorityConfirm() { 
+  var unit_id = $("#unit").attr("data-unit-id");
+    $('.row_drag>tr').each(function() { 
+      // var aut=$(this).data.authority="asde";
+      var newaut = {
+    id: $(this).attr("id"),
+    authority: $(this).attr("data-authority")
+  }
+ 
+  var newaut = JSON.stringify(newaut);
+  // $('#content').html('');
+  $.ajax({
+      // url: 'dataexecute.php',
+      url: '/editcatalog/catcrud.php',
+      method:"POST",
+      data:{newaut:newaut, unit_id:unit_id},
+      dataType:"html",
+      // data:$('#dataCrudForm').serialize()+'&action='+action,
+      success: function(data) {
+        $('#content').html(data);
+        // unitCatalog(data);
+      }
+    });
+
+            });  
+    unitCatalog(unit_id);
+}
+////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////
+//////////////////////catalogAdd//////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////
+function catalogAdd(number) {
+  $("#addCatalog").modal('show');
+
+}
+////////////////////////////////////////////////////////////////////////////////////
+
+//////////////////////////Работас журналами area raspred type unit department sector filial
+function staCRUD() {
+  // body...
+}
+///////////////////////////////////////////////////////////////////////////////////////////
+////////НОМЕРа///////////
+function numberCatalog() {
+  // body...
+  var dataTable = $('#content').DataTable({
+    "processing" : true,
+    "serverSide" : true,
+    "order" : [],
+    "ajax" : {
+     url:"numbertable.php",
+     type:"POST"
+    }
+   });
 }
 ////////////////////////////////////////////////////////////////////////////////////
 /**

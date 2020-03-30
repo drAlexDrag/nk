@@ -16,6 +16,7 @@ if(isset($_SESSION['loginUser'])):?>
     <link rel="stylesheet" href="/css/mystyle.css" />
    <!--  <link rel="stylesheet" href="/css/freenum.css" /> -->
     <script src="/js/jquery-3.4.1.min.js"></script>
+    <script src="/js/jquery-ui.min.js"></script>
     <script src="/js/popper.min.js"></script>
     <script src="/js/bootstrap.min.js"></script>
     <!-- <script src="/js/myjs.js"></script> -->
@@ -34,12 +35,23 @@ if(isset($_SESSION['loginUser'])):?>
             </li></ul>
   </div>
   <div class="collapse navbar-collapse" id="navbarNavDropdown">
-    <ul class="navbar-nav ml-auto mt-2 mt-lg-0">
+    <ul class="navbar-nav">
       <li class="nav-item active">
-        <a class="nav-link" href="#" onclick="fetchData(1)">Домой <span class="icon">S</span><span class="sr-only">(current)</span></a>
+        <a class="nav-link" href="#" onclick="fetchData(1)">Домой <span class="icon-wite">S</span><span class="sr-only">(current)</span></a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="#" onclick="catalogOpen()"><span>Справочник телефонов</span></a>
+        <a class="nav-link" href="./table/table.php" target="_blank">Таблицы</a>
+      </li>
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Справочник
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+          <a class="dropdown-item" href="#" onclick="catalogOpen()"><span>Справочник телефонов</span></a>
+          <a class="dropdown-item" href="#" onclick="edit_catalog()">Порядок отображения абонентов</a>
+          <a class="dropdown-item" href="#">Another action</a>
+          <a class="dropdown-item" href="#">Something else here</a>
+        </div>
       </li>
            <li class="nav-item dropdown admin">
         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownAdminLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -50,16 +62,7 @@ if(isset($_SESSION['loginUser'])):?>
 
         </div>
       </li>
-      <li class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          Dropdown link
-        </a>
-        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-          <a class="dropdown-item" href="#">Action</a>
-          <a class="dropdown-item" href="#">Another action</a>
-          <a class="dropdown-item" href="#">Something else here</a>
-        </div>
-      </li>
+      
 
        <li class="nav-item">
         <a class="nav-link" href="#" onclick="exitKross()">Выход</a>
@@ -78,7 +81,10 @@ if(isset($_SESSION['loginUser'])):?>
 
 
 <div class="container-fluid" id="modalWindow"></div>
+<div class="container-fluid" id="modalWindowCat"></div>
+
         <footer class="container-fluid text-left well">
+          <div class="row">
           <div class="col-md-4"><h3>Контакты</h3><hr>
             Транзистор Кросс 3222<br />
             Мион Кросс 5133<br/>
@@ -87,10 +93,10 @@ if(isset($_SESSION['loginUser'])):?>
           <!-- <div class="col-md-4"><h3>Просмотры справочника</h3><hr>
            <?php include 'show_stats.php';?>
          </div> -->
-         <div class="col-md-4"><h3>Работает</h3><hr><p id="login"><?php echo $_SESSION["login"];?></p>
+         <div class="col-md-4 ml-auto"><h3>Работает</h3><hr><p id="login"><?php echo $_SESSION["login"];?></p>
           <p>IP: <?php echo $_SERVER["REMOTE_ADDR"]; ?></p></div>
           <div id="adm" hidden><?php echo $_SESSION["admin"];?></div><?php echo $hostname; ?>
-
+</div>
           <div class="col-md-12 text-right" id="copywriteblock">ADragunov</div>
         </footer>
 
@@ -105,6 +111,10 @@ $(document).ready(function(){
           <button type="button" class="btn closebtn" id="closeAlertoverlay" onclick="off()">Закрыть подсказку</button>
           <div id="alertoverlay"></div>
         </div>
+
+
+
+
 <script src="/js/myjs.js"></script>
  <script>document.write('<script src="http://' + (location.host || 'localhost').split(':')[0] + ':35729/livereload.js?snipver=1"></' + 'script>')</script>
       </body>

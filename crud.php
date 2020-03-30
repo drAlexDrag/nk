@@ -22,7 +22,7 @@ switch ($action) {
   break;
 ///////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////
-  case 'updateData':
+  case 'updateData'://ПРоверка на наличие ncatalog.id
   $updateKrossData = json_decode($_POST['updateKrossData'], true);
 $krossdata = R::load( 'krossdata', $updateKrossData["id"] ); //reloads our data
 $krossdata->raspred_id=$updateKrossData["raspred"];
@@ -41,7 +41,7 @@ foreach($areaQuery as $row)
 {
   $area=$row['area_name'];
 // $idDataKross=R::getCol('SELECT id FROM krossdata WHERE data=? AND area_id=?', [$dataKross, $areaId]);
-  $updatebean=R::getAll('SELECT krossdata.id, krossdata.data, raspred.raspred_name, krossdata.number, ncatalog.ncatalog_name, type.type_name, krossdata.comment, ncatalog.ncatalog_cabinet, area.area_name
+  $updatebean=R::getAll('SELECT krossdata.id, krossdata.data, raspred.raspred_name, krossdata.number, ncatalog.id AS ncid, ncatalog.ncatalog_name, type.type_name, krossdata.comment, ncatalog.ncatalog_cabinet, area.area_name
     FROM krossdata
     INNER JOIN raspred ON krossdata.raspred_id = raspred.id
     INNER JOIN ncatalog ON krossdata.ncatalog_id = ncatalog.id
@@ -159,33 +159,7 @@ $krossdata = R::load( 'krossdata', $dataPost["data_id"] );
     'area'=>R::load('area', $krossdata->area_id)
   );
 $pereKrossIn= $krossobj['id'];
-  // echo(json_encode($krossobj));
-//   $outputIn.='<div class="table-responsive" style="border-color:blue; border-style: double; margin-top: 5px; border-radius: 10px;" name="pereKrossIn" id="pereKrossIn" data-controlArea="'.$krossdata->area_id.'" data-dataid="'.$krossdata->id.'">
-// <table class="table table-bordered table-hover">
-// <thead>
-// <tr>
-// <th>Данные</th>
-// <th>Распределение</th>
-// <th>Номер</th>
-// <th>Имя</th>
-// <th>Тип</th>
-// <th>Комментарии</th>
-// <th>Площадка</th>
-// </tr></thead>
-// <tbody>';
-// $color=ColorType($inData["type"]);
-// $outputIn.='<tr '.$color.'>
-// <td>'.$inData['data_name'].'</td>
-// <td>'.$inData['raspred'].'</td>
-// <td>'.$inData['number'].'</td>
-// <td>'.$inData['sub'].'</td>
-// <td>'.$inData['type'].'</td>
-// <td>'.$inData['comment'].'</td>
-// <td>'.$inData['area'].'</td>
-// </tr></tbody></table></div>
-// ';321
-
-$output.='<div class="alert alert-info"><div class="input-group"><input type="text" class="form-control" id="pereKrossIn" value="'.$pereKrossIn.'"><input type="text" name="pereKrossOut" id="pereKrossOut" class="form-control" placeholder="На какие данные переносим или копируем?"></div>
+$output.='<div class="alert alert-info"><div class="input-group"><input type="text" class="form-control" id="pereKrossIn" value="'.$pereKrossIn.'" hidden><input type="text" name="pereKrossOut" id="pereKrossOut" onkeyup="searchData()" class="form-control" placeholder="На какие данные переносим или копируем?"></div>
 <div id="resultSearch"></div>
 </div>';
 echo $output;
@@ -216,7 +190,15 @@ $area=R::load('area', $krossdata->area_id);
     // 'area'=>R::load('area', $krossdata->area_id)
   );
   $pereKrossOut=$krossobj['id'];
+  $buttonOut.='<div class="row"><div class="mr-auto col-sm-6"><button type="button" class="btn btn-danger " onclick="select_typePK('.$pereKrossOut.')">Выполнить перекроссировку</button></div>
+
+<div class="mr-auto col-sm-6"><button type="button" class="btn btn-warning " onclick="select_raspredCopy('.$pereKrossOut.')">Выполнить копирование данных</button></div><hr></div>';
+  // var_dump($krossdata);
+  if ($getDataId==null){$outputOut.='<br><div class="alert alert-info">
+<strong>Info!</strong> Данные '.$_POST['dataName'].'  не найдены. Но при перекроссировании или копировании будут созданы
+</div>'.$buttonOut;} else{
   $outputOut.='
+
 <div class="table-sm" style="border-color:blue; border-style: double; margin-top: 5px; border-radius: 10px;">
 <table class="table table-bordered table-hover">
 <thead>
@@ -242,18 +224,82 @@ $outputOut.='<tr '.$color.'>
 <td>'.$krossobj['cabinet'].'</td>
 <td>'.$krossobj['area'].'</td>
 </tr></tbody></table></div>
-<hr>
-<div class="row">
- <div class="mr-auto col-sm-6"><button type="button" class="btn btn-danger " onclick="confirmPereKross('.$pereKrossOut.')">Выполнить перекроссировку</button></div>
-
-<div class="mr-auto col-sm-6"><button type="button" class="btn btn-warning " onclick="copyPereKross()">Выполнить копирование данных</button></div><hr>
-</div>';
+<hr>'.$buttonOut;}
   // echo (json_encode($getDataId));
 echo $outputOut;
 // echo($pereKrossIn."----->>>>>".$pereKrossOut.$GLOBALS[$pereKrossIn]);
 break;
-case 'confirm_pereKross':
-x;///ПЕреносим информацию с данных XXX на данные YYY. Сделать проверку? на изменение типа данных XXX
+case 'confirm_pereKross':///ПЕреносим информацию с данных XXX на данные YYY. Сделать проверку? на изменение типа данных XXX
+$output='';
+$id=$dataPost["pereKrossOut"];
+$dataIn = R::load('krossdata', $dataPost["pereKrossIn"]);
+
+if ($dataPost["pereKrossOut"]==0) {
+  # code...
+  $dataOut = R::dispense('krossdata');
+  $id = R::getInsertID();
+  $dataOut = R::load('krossdata', $id);
+  $dataOut->data = $dataPost["dataName"];
+  $dataOut->number = $dataIn->number;
+  // $dataOut->comment = $dataIn->comment;
+  $dataOut->raspred_id = $dataIn->raspred_id;
+  $dataOut->ncatalog_id = $dataIn->ncatalog_id;
+  $dataOut->type_id = $dataIn->type_id;
+  $dataOut->area_id = $dataIn->area_id;
+  R::store($dataOut);
+} else{
+  $dataOut = R::load('krossdata', $id);
+$dataOut->number = $dataIn->number;
+// $dataOut->comment = $dataIn->comment;
+$dataOut->raspred_id = $dataIn->raspred_id;
+$dataOut->ncatalog_id = $dataIn->ncatalog_id;
+$dataOut->type_id = $dataIn->type_id;
+$dataOut->area_id = $dataIn->area_id;
+R::store($dataOut);
+}
+$dataIn->raspred_id=1;
+$dataIn->number=9999999;
+$dataIn->ncatalog_id=3000;
+$dataIn->type_id=$_POST['selectTypeId'];
+R::store($dataIn);
+$output.='<div class="alert alert-danger" role="alert" id="dangeralert">Информация с данных <strong style="font-size:25px">'.$dataIn->data.'</strong> перекроссирована на данные <strong style="font-size:25px">'.$dataPost["dataName"].'</strong></div>';
+echo $output;
+break;
+case 'confirm_copy':
+$output='';
+$id=$dataPost["pereKrossOut"];
+$dataIn = R::load('krossdata', $dataPost["pereKrossIn"]);
+
+// if ($dataPost["pereKrossOut"]==0) {
+//   # code...
+//   $dataOut = R::dispense('krossdata');
+//   $id = R::getInsertID();
+//   $dataOut = R::load('krossdata', $id);
+//   $dataOut->data = $dataPost["dataName"];
+//   $dataOut->number = $dataIn->number;
+//   // $dataOut->comment = $dataIn->comment;
+//   $dataOut->raspred_id = $dataIn->raspred_id;
+//   $dataOut->ncatalog_id = $dataIn->ncatalog_id;
+//   $dataOut->type_id = $dataIn->type_id;
+//   $dataOut->area_id = $dataIn->area_id;
+//   R::store($dataOut);
+// } else{
+  $dataOut = R::load('krossdata', $id);
+$dataOut->number = $dataIn->number;
+// $dataOut->comment = $dataIn->comment;
+$dataOut->raspred_id = $_POST['selectRaspredId'];
+$dataOut->ncatalog_id = $dataIn->ncatalog_id;
+$dataOut->type_id = $dataIn->type_id;
+$dataOut->area_id = $dataIn->area_id;
+R::store($dataOut);
+// }
+// $dataIn->raspred_id=1;
+// $dataIn->number=9999999;
+// $dataIn->ncatalog_id=3000;
+// $dataIn->type_id=$_POST['selectTypeId'];
+// R::store($dataIn);
+$output.='<div class="alert alert-danger" role="alert" id="dangeralert">Информация с данных <strong style="font-size:25px">'.$dataIn->data.'</strong> скопирована на данные <strong style="font-size:25px">'.$dataPost["dataName"].'</strong></div>';
+echo $output;
 break;
 }
 ////////////////////////////Function////////////////////

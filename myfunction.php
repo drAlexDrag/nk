@@ -74,7 +74,7 @@ function TbodyKrossdata($row, $color)
 {
 	$output='';
 	$output .= '<tr '.$color.'>
-	<td  class="edit_daxta" data-id="'.$row["id"].'" data-area-name="'.$row["area_name"].'"   onmousedown="isKeyPressed(event, '.$row["id"].')"><b>'.$row["data"].' </b><span class="icon">></span></td>
+	<td  class="edit_daxta" data-id="'.$row["id"].'" data-area-name="'.$row["area_name"].'"   onmousedown="isKeyPressed(event, '.$row["id"].')"><b>'.$row["data"].' </b><span class="icon">?</span></td>
 	<td>'.$row["raspred_name"].'</td>
 	<td class="data-number" title="Быстрый поиск по номеру: '.$row["number"].'">'.$row["number"].' <span class="glyphicon glyphicon-search"></span></td>
 	<td class="data-name" title="ID абонента-'.$row["ncid"].'">'.$row["ncatalog_name"].'</td>
@@ -126,7 +126,7 @@ function OutputTbodyCatalog($row){
 function BeansNull($catalogBeans, $searchString){
 	$output='';
 	$output='<br><div class="alert alert-danger">
-	Информация по : <strong>'.$searchString.'</strong><br>Отсутствует в справочнике<hr><button type="button" class="btn btn-primary" onclick="catalogAdd()">Добавить абонента в справочник</button></div>';
+	Информация по : <strong>'.$searchString.'</strong><br>Отсутствует в справочнике<hr><button type="button" class="btn btn-primary" onclick="catalogAdd('.$searchString.')">Добавить абонента в справочник</button></div>';
 	return $output;
 }
 ?>
