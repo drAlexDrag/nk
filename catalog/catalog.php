@@ -89,7 +89,7 @@
     </li>
       <li class="nav-item dropdown">
         <a class="nav-link dropdown-toggle" href="#" id="download" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          Dropdown link
+          Скачать
         </a>
         <div class="dropdown-menu" aria-labelledby="download">
           <a download class="dropdown-item" href="../catalogPdf.php" onclick="countDownloads()"><img border="0" src="/images/pdf.png" alt="W3Schools" width="32" height="32"> PDF</a>

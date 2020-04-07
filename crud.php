@@ -1,6 +1,9 @@
 <?php
 require 'connect.php';
-
+// require_once "phpdebug/phpdebug.php";//вывод в консоль
+// $debug = new PHPDebug();
+// $debug->debug("Очень простое сообщение на консоль", null, LOG);
+// $debug->debug("Очень простое сообщение на консоль2", null, LOG);
 $dataPost=$_POST;
 $action=$dataPost["action"];
 switch ($action) {
@@ -94,14 +97,16 @@ $krossdata->number=$insertKrossData["number"];
 $krossdata->ncatalog_id=$insertKrossData["ncatalog"];
 $krossdata->type_id=$insertKrossData["type"];
 $krossdata->comment=$insertKrossData["comment"];
-$ncatalog_cabinet = R::load( 'ncatalog', $insertKrossData["ncatalog"]);
-$ncatalog_cabinet->ncatalog_cabinet=$insertKrossData["cabinet"];
-R::store($ncatalog_cabinet);
+// $ncatalog_cabinet = R::load( 'ncatalog', $insertKrossData["ncatalog"]);
+// $ncatalog_cabinet->ncatalog_cabinet=$insertKrossData["cabinet"];
+// R::store($ncatalog_cabinet);
 // $krossdata->cabinet=$insertKrossData["cabinet"];
 $krossdata->area_id=$insertKrossData["area"];
+$area = R::load('area', $krossdata->area_id);
+// $debug->debug($area["area_name"], null, LOG);
 R::store($krossdata);
 $getinsertID=R::getinsertID();
-$message.= '<div class="alert alert-info" role="alert">Площадка: <strong>'.$insertKrossData["area"].'</strong><hr>Добавлены новые данные: <strong>'.$insertKrossData["data"].'</strong></div>';
+$message.= '<div class="alert alert-info" role="alert">Площадка: <strong>'.$area["area_name"].'</strong><hr>Добавлены новые данные: <strong>'.$insertKrossData["data"].'</strong></div>';
 echo ($message);
 break;
 

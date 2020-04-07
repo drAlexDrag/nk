@@ -53,14 +53,14 @@ $output .= '
    <tr class="w3-red" title="Значение нигде не задействовано">
     <td>'.$row["id"].'</td>
     <td>'.$row["ncatalog_number"].'</td>
-    <td><a href="#" onclick="updateKrossData(this)" data-nametable="'.$tablename.'" data-idname="'.$row['id'].'" data-value="'.$row[$columnname].'" data-idinput="'.$idinput.'" class="tablecolumn" data-number="'.$row["ncatalog_number"].'">'.$row["ncatalog_name"].'</a></td>
+    <td><a href="#" onclick="updateKrossData(this)" data-nametable="'.$tablename.'" data-idname="'.$row['id'].'" data-value="'.$row[$columnname].'" data-idinput="'.$idinput.'" class="tablecolumn" data-number="'.$row["ncatalog_number"].'" data-cabinet="'.$row["ncatalog_cabinet"].'">'.$row["ncatalog_name"].'</a></td>
    </tr>
   ';
    }else{
     $output .= '
    <tr class="w3-red" title="Значение нигде не задействовано">
     <td>'.$row["id"].'</td>
-    <td><a href="#" onclick="updateKrossData(this)" data-nametable="'.$tablename.'" data-idname="'.$row['id'].'" data-value="'.$row[$columnname].'" data-idinput="'.$idinput.'" class="tablecolumn" data-name="'.$row["ncatalog_name"].'">'.$row["ncatalog_number"].'</a></td>
+    <td><a href="#" onclick="updateKrossData(this)" data-nametable="'.$tablename.'" data-idname="'.$row['id'].'" data-value="'.$row[$columnname].'" data-idinput="'.$idinput.'" class="tablecolumn" data-name="'.$row["ncatalog_name"].'" data-cabinet="'.$row["ncatalog_cabinet"].'">'.$row["ncatalog_number"].'</a></td>
     <td>'.$row["ncatalog_name"].'</td>
    </tr>
   ';
@@ -83,7 +83,7 @@ $output .= '
     </tr>
  ';
 foreach ($result as $row) {
-  $colorbeanscatalog=R::getAll( 'SELECT * FROM catalog WHERE '.$tablename2.'='.$row["id"].' ');
+  $colorbeanscatalog=R::getAll( 'SELECT * FROM ncatalog WHERE '.$tablename2.'='.$row["id"].' ');
   $colorbeanskrossdata=R::getAll( 'SELECT * FROM krossdata WHERE '.$tablename2.'='.$row["id"].' ');
   if ($colorbeanscatalog==null & $colorbeanskrossdata==null){
   $output .= '

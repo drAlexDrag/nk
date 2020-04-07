@@ -44,11 +44,11 @@ function TheadKrossdata()
 	<tr>
 	<th>Данные</th>
 	<th>Распределение</th>
-	<th>Номер</th>
-	<th>Имя абонента</th>
+	<th>Номер <span class="icon">b</span></th>
+	<th>Имя абонента <span class="icon">b</span></th>
 	<th>Тип</th>
-	<th>Комментарии</th>
-	<th>Кабинет</th>
+	<th>Комментарии <span class="icon">b</span></th>
+	<th>Кабинет <span class="icon">b</span></th>
 	<th>Кросс</th>
 	</tr>
 	</thead>
@@ -76,7 +76,7 @@ function TbodyKrossdata($row, $color)
 	$output .= '<tr '.$color.'>
 	<td  class="edit_daxta" data-id="'.$row["id"].'" data-area-name="'.$row["area_name"].'"   onmousedown="isKeyPressed(event, '.$row["id"].')"><b>'.$row["data"].' </b><span class="icon">?</span></td>
 	<td>'.$row["raspred_name"].'</td>
-	<td class="data-number" title="Быстрый поиск по номеру: '.$row["number"].'">'.$row["number"].' <span class="glyphicon glyphicon-search"></span></td>
+	<td class="data-number" title="Быстрый поиск по номеру: '.$row["number"].'">'.$row["number"].' </td>
 	<td class="data-name" title="ID абонента-'.$row["ncid"].'">'.$row["ncatalog_name"].'</td>
 	<td data-type="'.$row["data"].'" >'.$row["type_name"].'</td>
 	<td class="data-comment">'.$row["comment"].'</td>
@@ -113,7 +113,7 @@ function OutputTbodyCatalog($row){
 	else {
 		$outputTbody .='<tr style="background:  #FF4500">';
 	}
-	$outputTbody .='<td class="red_modal" data-ncatalog="'.$row["ncatalog_name"].'" data-id="'.$row["id"].'" data-ncatalogid="'.$row["ncatalog_id"].'">'.$row["id"].'<span class="glyphicon glyphicon-edit"></span></td>
+	$outputTbody .='<td class="red_modal" data-ncatalog="'.$row["ncatalog_name"].'" data-id="'.$row["id"].'" onclick="tablnumber('.$row["ncatalog_number"].')">'.$row["id"].'<span class="glyphicon glyphicon-edit"></span></td>
 	<td class="data-name" title="ID абонента-'.$row["id"].'">'.$row["ncatalog_name"].'</td>
 	<td class="data-number">'.$row["ncatalog_number"].'</td>
 	<td>'.$row["unit_name"].'</td>

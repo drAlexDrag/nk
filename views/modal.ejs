@@ -57,9 +57,19 @@
     <div class="blockbtn form-group row">
     <label class="control-label col-sm-2" for="cabinet">Кабинет:</label>
     <div class="col-sm-10">
-    <input type="text" class="form-control textKrossData" id="cabinet" placeholder="" name="cabinet" required>
+    <input type="text" class="form-control textKrossData" id="cabinet" placeholder="" name="cabinet" required disabled="disabled">
   </div></div>
 
+<!--   <div class="form-check form-group row">
+    <label class="custom-control-label col-sm-2" for="visibility">Che</label>
+    <div class="col-sm-10">
+    <input type="checkbox" class="custom-control-input" id="visibility" name="visibility">
+  </div></div> -->
+
+<div class="custom-control custom-checkbox">
+    <input type="checkbox" class="custom-control-input" id="visibility" name="visibility" checked="true">
+    <label class="custom-control-label" for="visibility">Видимость абонента в справочнике (по умолчанию видим)</label>
+  </div>
 
  <!--  <div class="form-group form-check">
     <label class="form-check-label">
@@ -83,18 +93,9 @@
 
       <!-- Modal footer -->
       <div class="modal-footer">
-        <div class="mr-auto"><a class="dropdown-item" href="./table/table.php"  target="_blank" style="background-color: coral;"><span>Таблицы</span></a>
-          <!-- <div class="dropdown-menu" style="background-color: ,red;" > -->
-            <!-- <a class="dropdown-item" href="#" onclick="freenumber('number')"><span>Свободные номера</span></a> -->
-            
-          <!--   <a class="dropdown-item" href="#" onclick=" staCRUD('unit', 'Управления')"><span>Управления</span></a>
-            <a class="dropdown-item" href="#" onclick=" staCRUD('department', 'Отделы/Бюро')"><span>Отделы/Бюро</span></a> -->
-            <!-- <a class="dropdown-item" href="#" onclick=" staCRUD('filial', 'Филиалы')"><span>Филиалы</span></a> -->
-            <!-- <a class="dropdown-item" href="#" onclick=" staCRUD('area', 'Площадки')"><span>Кроссовые журналы</span></a> -->
-           <!--  <a class="dropdown-item" href="#" onclick=" staCRUD('type', 'Типы')"><span>Типы</span></a>
-            <a class="dropdown-item" href="#" onclick=" staCRUD('raspred', 'Распределение')"><span>Распределение</span></a>
-            <a class="dropdown-item" href="#" onclick=" staCRUD('sector', 'ТЕСТ Сектор')"><span>ТЕСТ Сектор</span></a> -->
-          <!-- </div> -->
+        <div class="mr-auto">
+          <!-- <button type="button" class="btn-block"><a class="dropdown-item" href="./table/table.php"  target="_blank" ><span>Таблицы</span></a></button> -->
+          <button type="button" class="btn btn-warning" onclick="tabl()">К таблице абонентов</button>
         </div>
         <div><button type="button" class="btn btn-danger" data-dismiss="modal">Закрыть</button></div>
       </div>

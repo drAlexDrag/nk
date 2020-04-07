@@ -4,3 +4,5 @@ fpdf/
 /composer.json
 /composer.lock
 /package-lock.json
+/DataTables-1.10.20
+/PHPDebug

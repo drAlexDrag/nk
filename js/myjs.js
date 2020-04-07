@@ -4,10 +4,32 @@ $(document).ready(function(){
     $('[data-toggle="popover"]').popover();
     fetchData(1);
   });
+var myWindow;
+
+function openWin() {
+  myWindow = window.open("", "_blank", "MsgWindow", "resizable=yes,top=50,left=1,width=200,height=100");
+  myWindow.document.write('<div class="container-fluid-xl images-tabl"><a href="#"><img src="../images/krjpg.jpg"></a></div>\
+<div id="alert_message"></div>');
+}
+
+function closeWin() {
+  myWindow.close();
+}
+function tabl() {
+  // body...
+  var number = $('#number').val();
+  window.open('./table/table.php?number='+number);
+}
+function tablnumber(number) {
+  // body...
+  // var number = $('#number').val();
+  window.open('./table/table.php?number='+number);
+}
 function catalogOpen()
 { 
   window.open("/catalog/catalog.php");
 }
+
 function exitKross(){
   if(confirm("Вы действительно хотите завершить работу?")){
     $.ajax({
@@ -156,8 +178,9 @@ function gogo() {
 ///////////////////////////Добавить данные///////////////////////////
 function insertKrossData() {
   var objArea=paramArea();
-  document.getElementById("myModalForm").reset();
+  $("#myModalForm")[0].reset();
   $('#myModalCRUDTitle').html("Добавить данные на "+objArea.name);
+
       $('#data').removeAttr('disabled');
       $('#confirmInsert').removeAttr('hidden');
       $('#confirmUpdate').attr('hidden', 'hidden');
@@ -168,9 +191,15 @@ $('#result_auto').remove();
       $(".blockbtn").show(1000);
 
       $('#myModalCRUD').modal('show');
-  
+      element = document.querySelectorAll('input[data-table-id]');
+      for (i = 0; i < element.length; i++) {
+    element[i].setAttribute('data-table-id', '');
+  }
+
 }
 function confirmInsert(){
+  if($('#data').val() != '' && $('#raspred').attr('data-table-id') != '' && $("#number").val() !='' && $("#ncatalog").attr('data-table-id') != '' && $("#type").attr('data-table-id') != '')
+   {
   var action= "insertData";
   var objArea=paramArea();
   var insertKrossData = {
@@ -184,6 +213,7 @@ function confirmInsert(){
     cabinet: $('#cabinet').val(),
     area: objArea.id
   }
+  var number = (insertKrossData["number"]);
   var insertKrossData = JSON.stringify(insertKrossData);
   $.ajax({
     url:"crud.php",
@@ -193,13 +223,24 @@ function confirmInsert(){
     success:function(data)
     {
       $('#content').html(data);
-      
+      $('#myModalCRUD').modal('hide');
+      $('#searchString').val(number);
+  $('#parameterSearch').val('number');
+  stringSearch();
     },
     error:function(data)
     {
 
     }
-  });
+  });}
+  else
+   {
+     alertoverlay('<div>Данные:<br>Распредедение:<br>Телефон:<br>Имя абонента:<br>Тип:</div>\
+      <div>ПОЛЯ ОБЯЗАТЕЛЬНЫ К ЗАПОЛНЕНИЮ</div>');
+
+    // alert("Данные: Распредедение: Телефон: Имя абонента: Тип:"+'\n'+
+    //   "ПОЛЯ ОБЯЗАТЕЛЬНЫ К ЗАПОЛНЕНИЮ");
+   }
 }
 /////////////////////////////////////////////////////////////////////
 /////////////////////////////////////////////////////////////////////
@@ -217,7 +258,7 @@ function editData(id) {
    var data_id = id;
   var action= "loadData";
   console.log(data_id);
-  document.getElementById("myModalForm").reset();
+  $("#myModalForm")[0].reset();
   $('#confirmInsert').attr('hidden','hidden');
   $('#confirmUpdate').removeAttr('hidden');
       $('#clearData').removeAttr('hidden');
@@ -269,15 +310,15 @@ $(document).on('click', '.autoListData', function(){
   var idinput=event.target.id;
   input=event.target.id;
   var tablename = event.target.dataset.table;
-  console.log("Таблица---", tablename);
-  console.log("Инпут---", idinput);
-  console.log("Значение---", $(this).val());
-  console.log("Id Значения---", $(this).attr("data-table-id"));
+  // console.log("Таблица---", tablename);
+  // console.log("Инпут---", idinput);
+  // console.log("Значение---", $(this).val());
+  // console.log("Id Значения---", $(this).attr("data-table-id"));
   var query = $(this).val();
   var iddatatable = $(this).attr("data-table-id");
   var columnname=tablename+"_name";
   if (idinput=="number"){columnname=tablename+"_number";}
-  console.log("Имя столбца", columnname);
+  // console.log("Имя столбца", columnname);
   idinput='#'+idinput;
   $('#result').remove();
   autoListData(tablename, idinput, query, columnname, iddatatable, input);
@@ -287,28 +328,28 @@ $(document).on('keyup', '.autoListData', function(){//потом передел�
   var idinput=event.target.id;
   input=event.target.id;
   var tablename = event.target.dataset.table;
-  console.log("Таблица---", tablename);
-  console.log("Инпут---", idinput);
-  console.log("Значение---", $(this).val());
-  console.log("Id Значения---", $(this).attr("data-table-id"));
+  // console.log("onkeyup: Таблица---", tablename+'\n'+
+  //   "Инпут---", idinput+'\n'+
+  //   "Значение---", $(this).val()+'\n'+
+  //   "Id Значения---", $(this).attr("data-table-id"));
   var query = $(this).val();
   var iddatatable = $(this).attr("data-table-id");
   var columnname=tablename+"_name";
   if (idinput=="number"){columnname=tablename+"_number";}
-  console.log("Имя столбца", columnname);
+  // console.log("onkeyup: Имя столбца", columnname);
   idinput='#'+idinput;
   $(idinput).attr({"data-table-id":""});
   $('#result').remove();
-  $(idinput).addClass('alert alert-danger');btnblock();
+  $(idinput).addClass('alert alert-danger');
+  btnblock();
   autoListData(tablename, idinput, query, columnname, iddatatable, input);
 });
 function autoListData(tablename, idinput, query, columnname, iddatatable, input) {
-  console.log("Какой инпут посылает запрос (событие onkeyup): ", idinput);
-  console.log("Длинна запроса: ", query.length);
-  // console.log("Атрибут data-table после click: ", document.getElementById("staAutoList").getAttribute("data-table"));
-  console.log("Поиск по таблице: ", tablename);
-  console.log("Запрос: ", query);
-  // console.log("nomer: ", $('#number').val());
+  console.clear();
+  console.log("Какой инпут посылает запрос (событие onkeyup, onclick): ", idinput+'\n'+
+  "Длинна запроса: ", query.length+'\n'+
+  "Поиск по таблице: ", tablename+'\n'+
+  "Запрос: ", query);
   number=$('#number').val();
   // debugger;
   if(!$("div").is("#result")){
@@ -365,6 +406,7 @@ function updateKrossData(updateData){
   $(idinput).val(updateData.getAttribute('data-value'));
   $('#ncatalog').val(updateData.getAttribute('data-name'));
   $('#ncatalog').attr({"data-table-id":updateData.getAttribute('data-idname')});
+  $('#cabinet').val(updateData.getAttribute('data-cabinet'));
   $(idinput).removeClass('alert alert-danger');
   } else if(idinput=="ncatalog"){
     var idinput="#"+idinput;
@@ -372,6 +414,7 @@ function updateKrossData(updateData){
   $(idinput).val(updateData.getAttribute('data-value'));
   $('#number').val(updateData.getAttribute('data-number'));
   $('#number').attr({"data-table-id":updateData.getAttribute('data-idname')});
+  $('#cabinet').val(updateData.getAttribute('data-cabinet'));
   $(idinput).removeClass('alert alert-danger');
   }
     else{
@@ -381,7 +424,8 @@ function updateKrossData(updateData){
   $(idinput).val(updateData.getAttribute('data-value'));
   $(idinput).removeClass('alert alert-danger');
   }
-$('#result').remove();btnblock();
+$('#result').remove();
+btnblock();
 }
 
 function confirmUpdate() {
@@ -409,7 +453,7 @@ function confirmUpdate() {
     {
       $('#myModalCRUD').modal('hide');
       $('#result').remove();
-      document.getElementById("myModalForm").reset();
+      $("#myModalForm")[0].reset();
       $('#content').html(data);
     },
     error:function(data)

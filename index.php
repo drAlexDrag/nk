@@ -23,7 +23,7 @@ if(isset($_SESSION['loginUser'])):?>
     <!-- <script src="/js/livereload.js"></script> -->
 
   </head>
-  <body>
+  <body style="font-size: 0.8rem;">
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
   <a class="navbar-brand" href="#">KROSS</a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
@@ -42,6 +42,10 @@ if(isset($_SESSION['loginUser'])):?>
       <li class="nav-item">
         <a class="nav-link" href="./table/table.php" target="_blank">Таблицы</a>
       </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#" onclick="openWin()">Таблица кабелей</a>
+      </li>
+      
       <li class="nav-item dropdown">
         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
           Справочник
@@ -70,11 +74,13 @@ if(isset($_SESSION['loginUser'])):?>
     </ul>
   </div>
 </nav>
-<div class="container-fluid p-1" id="search">
+<!-- <div class="container-fluid-xl images-tabl"><a href="#">Таблица кабелей<img src="./images/krjpg.jpg" alt="Flowers in Chania" ></a></div> -->
+<!-- <a href="#"><img src="./images/krjpg.jpg" alt="Flowers in Chania" <img src="./images/krjpg.jpg" alt="Flowers in Chania" ></a> -->
+<div class="container-fluid-xl p-1" id="search">
 
 </div>
 <!-- <button type="button" class="btn btn-info" onclick="gogo()">Start Script</button> -->
-<div class="container-fluid" id="content"></div>
+<div class="container-fluid-xl" id="content"></div>
 <!--   <a href="#" title="Header" data-toggle="popover" data-placement="bottom" data-content="Content">Bottom</a>
   <a href="#" title="Header" data-toggle="popover" data-placement="left" data-content="Content">Left</a>
   <a href="#" title="Header" data-toggle="popover" data-trigger="hover" data-placement="right" data-content="Content">Right</a> -->
@@ -99,6 +105,7 @@ if(isset($_SESSION['loginUser'])):?>
 </div>
           <div class="col-md-12 text-right" id="copywriteblock">ADragunov</div>
         </footer>
+        
 
 <!--         <script>
 $(document).ready(function(){

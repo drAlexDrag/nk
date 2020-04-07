@@ -83,6 +83,28 @@
     border: 1px solid #ccc;
     border-radius: 4px;
   }
+.tooltip-inner {
+  min-width: 500px;
+}
+.images-tabl a {
+      display: block;
+    }
+
+.images-tabl a img {
+      display: none;
+      position: absolute;
+      top: 0;
+      border: 3;
+      border-color: black;
+      border-style: solid;
+      left: 10%;
+      top: 10%;
+      z-index: 99999;
+    }
+
+.images-tabl a:hover img {
+      display: block;
+    }
 /*#pagin  a {
   font: 35px "Lucida Grande", Helvetica, Arial, sans-serif;
 }

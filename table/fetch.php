@@ -48,9 +48,15 @@ $data = array();
 while($row = mysqli_fetch_array($result))
 {
  $sub_array = array();
-  $sub_array[] = '<div   data-id="'.$row["id"].'" data-table="'.$table_name.'" data-column="ncatalog_number">' .$row["id"]. '</div>';
- $sub_array[] = '<div  class="update krossdata" data-id="'.$row["id"].'" data-table="'.$table_name.'" data-column="ncatalog_number" name="'.$row["id"].'">' . $row["ncatalog_number"] . '</div>';
- $sub_array[] = '<div contenteditable class="update" data-id="'.$row["id"].'" data-table="'.$table_name.'" data-column="ncatalog_name">' . $row["ncatalog_name"] . '</div>';
+  $sub_array[] = '<div   data-id="'.$row["id"].'" data-table="'.$table_name.'" data-column="ncatalog_id" onclick="editSub(' .$row["id"]. ')">' .$row["id"]. '<span class="icon">Ü</span></div>';
+  if($row["free"]=="0"){
+ $sub_array[] = '<div style="color:blue;" class="update krossdata" data-id="'.$row["id"].'" data-table="'.$table_name.'" data-column="ncatalog_number" name="'.$row["id"].'" title="Двойной клик для просмотра исходящих данных по Дзержинке" onclick="get_number('.$row["id"].', '. $row["ncatalog_number"] .')">' . $row["ncatalog_number"] . '</div>';}
+ else{$sub_array[] = '<div style="color:red;" class="update krossdata" data-id="'.$row["id"].'" data-table="'.$table_name.'" data-column="ncatalog_number" name="'.$row["id"].'" title="Двойной клик для просмотра исходящих данных по Дзержинке" onclick="get_number('.$row["id"].', '. $row["ncatalog_number"] .')">' . $row["ncatalog_number"] . '</div>';}
+ if($row["visibility"]=="0"){ 
+ $sub_array[] = '<div style="color:red;" contenteditable class="update" data-id="'.$row["id"].'" data-table="'.$table_name.'" data-column="ncatalog_name" title="Не доступен для просмотра в справочнике"> ' . $row["ncatalog_name"] . '</div>';}
+ else{
+  $sub_array[] = '<div style="color:blue;" contenteditable class="update" data-id="'.$row["id"].'" data-table="'.$table_name.'" data-column="ncatalog_name" title="Доступен для просмотра в справочнике"> ' . $row["ncatalog_name"] . '</div>';
+ }
  $sub_array[] = '<div contenteditable class="update" data-id="'.$row["id"].'" data-table="'.$table_name.'" data-column="ncatalog_cabinet">' . $row["ncatalog_cabinet"] . '</div>';
  $sub_array[] = '<button type="button" name="delete" class="btn-sm btn-danger btn-xs delete" id="'.$row["id"].'" data-table="'.$table_name.'">Удалить</button>';
  $data[] = $sub_array;

@@ -4,24 +4,82 @@
 </button> -->
 
 <!-- The Modal -->
-<div class="modal" id="addCatalog">
-  <div class="modal-dialog">
+<div class="modal fade bd-example-modal-xl" id="editSub" data-backdrop="static" data-keyboard="false">
+  <div class="modal-dialog modal-xl">
     <div class="modal-content">
 
       <!-- Modal Header -->
       <div class="modal-header">
-        <h4 class="modal-title">Modal Heading</h4>
+        <h4 class="modal-title">Изменить принадлежность номера</h4>
         <button type="button" class="close" data-dismiss="modal">&times;</button>
       </div>
 
       <!-- Modal body -->
-      <div class="modal-body">
-        Modal body..
-      </div>
+            <div class="modal-body row"><!-- Modal body -->
+<div class="col-sm-10" style="border-right: 5px solid #ccc;">
+        <form id="myModalForm">
+<div class="custom-control custom-checkbox">
+    <input type="checkbox" class="custom-control-input" id="free" name="free" checked="true">
+    <label class="custom-control-label" for="free">Свободен</label>
+  </div>
+  <hr>
+
+  <div class="blockbtn form-group row">
+    <label class="control-label col-sm-2" for="number">Номер</label>
+    <div class="col-sm-10">
+    <input type="text" class="form-control" data-table-id="" id="number" placeholder="" name="number" required disabled="disabled">
+  </div></div>        
+
+  <div class="blockbtn form-group row">
+    <label class="control-label col-sm-2" for="ncatalog">Имя</label>
+    <div class="col-sm-10">
+    <input type="text" class="form-control" data-table-id="" id="ncatalog" placeholder="" name="ncatalog" required disabled="disabled">
+  </div></div>
+
+
+  <div class="blockbtn form-group row">
+    <label class="control-label col-sm-2" for="unit">Управление</label>
+    <div class="col-sm-10">
+    <input type="text" class="form-control autoListNcatalog" data-table="unit" data-table-id="" id="unit" placeholder="" name="unit">
+  </div></div>
+
+  <div class="blockbtn form-group row">
+    <label class="control-label col-sm-2" for="department">Отдел/Бюро</label>
+    <div class="col-sm-10">
+    <input type="text" class="form-control autoListNcatalog" data-table="department" data-table-id="" id="department" placeholder="" name="department">
+  </div></div>
+
+
+  <div class="blockbtn form-group row">
+    <label class="control-label col-sm-2" for="sector">Сектор</label>
+    <div class="col-sm-10">
+    <input type="text" class="form-control autoListNcatalog" data-table="sector" data-table-id="" id="sector" placeholder="" name="sector">
+  </div></div><hr>
+
+<div class="custom-control custom-checkbox">
+    <input type="checkbox" class="custom-control-input" id="visibility" name="visibility" checked="true">
+    <label class="custom-control-label" for="visibility">Видимость абонента в справочнике</label>
+  </div>
+<!--   <hr>
+
+  <div class="custom-control custom-checkbox">
+    <input type="checkbox" class="custom-control-input" id="print" name="print" checked="true">
+    <label class="custom-control-label" for="print">Видимость абонента в справочнике</label>
+  </div> -->
+
+
+</form>
+</div>
+
+<div class="col-sm-2">
+  <button type="button" class="blockbtn btn btn-success btn-block" onclick="updateSub()" id="updateSub">Обновить</button>
+</div>
+
+      </div><!-- Modal body -->
 
       <!-- Modal footer -->
       <div class="modal-footer">
-        <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-danger" data-dismiss="modal">Закрыть</button>
       </div>
 
     </div>
