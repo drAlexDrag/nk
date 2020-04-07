@@ -1,3 +1,4 @@
+.gitignore
 vendor/
 node_modules/
 fpdf/
@@ -6,3 +7,4 @@ fpdf/
 /package-lock.json
 /DataTables-1.10.20
 /PHPDebug
+/json/data.json
