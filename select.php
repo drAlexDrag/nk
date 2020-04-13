@@ -54,7 +54,8 @@ $beans = R::getAll('SELECT krossdata.id, ncatalog.id AS ncid, krossdata.data, ra
 file_put_contents('json/data.json',json_encode($beans));
 $output .= '<div class="bootstrap-table bootstrap4">';
 include('pagination.php');// Постраничный просмотр
-$output .=TheadKrossdata();
+if ($areaid->id=='12'){$output .=TheadPanasonic();}
+else {$output .=TheadKrossdata();}
 // var_dump($beans);
 foreach($beans as $row)
 {

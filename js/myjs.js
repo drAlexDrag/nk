@@ -430,6 +430,7 @@ btnblock();
 
 function confirmUpdate() {
   var action = "updateData";
+  var user = $('#login').text();
   var updateKrossData = {
     id: $('#data').attr('data-table-id'),
     data: $('#data').val(),
@@ -447,7 +448,7 @@ function confirmUpdate() {
     url:"crud.php",
     method:"POST",
     // data:{id:updateKrossData.id, data:updateKrossData.data, raspred:updateKrossData.raspred, number:updateKrossData.number, ncatalog:updateKrossData.ncatalog, type:updateKrossData.type, comment:updateKrossData.comment, cabinet:updateKrossData.cabinet},
-    data:{updateKrossData:updateKrossData, action:action},
+    data:{updateKrossData:updateKrossData, action:action, user:user},
     dataType:"html",
     success:function(data)
     {

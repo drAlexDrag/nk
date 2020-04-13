@@ -6,6 +6,7 @@
 $connect = mysqli_connect("localhost", "dron", "port2100", "newkross");
 // $columns = array('ncatalog_number', 'ncatalog_name', 'ncatalog_cabinet');
 $columns = array('id', $_POST['ncatalog_number'], $_POST['ncatalog_name'], $_POST['ncatalog_cabinet']);
+ // var_dump($columns);
 $table_name=$_POST['table_name'];
 // var_dump($_POST['sub']);
 // var_dump($table_name);
@@ -25,7 +26,7 @@ if(isset($_POST["search"]["value"]))
 if(isset($_POST["order"]))
 {
  $query .= 'ORDER BY '.$columns[$_POST['order']['0']['column']].' '.$_POST['order']['0']['dir'].' 
- ';
+ '; 
 }
 else
 {

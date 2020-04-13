@@ -33,6 +33,10 @@ switch ($updatedata['action']) {
 	
 	case 'update':
 		$result = R::load( 'ncatalog', $updatedata["id"] );
+		//////
+		// $logtable=R::dispense('logtable');
+		// $logtable->datachange=
+		//////////
 		$result->unit_id=$updatedata["unit_id"];
 		$result->department_id=$updatedata["department_id"];
 		$result->sector_id=$updatedata["sector_id"];

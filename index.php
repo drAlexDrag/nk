@@ -57,6 +57,9 @@ if(isset($_SESSION['loginUser'])):?>
           <a class="dropdown-item" href="#">Something else here</a>
         </div>
       </li>
+      <li class="nav-item">
+        <a class="nav-link" href="./log/log.php" target="_blank">Логи</a>
+      </li>
            <li class="nav-item dropdown admin">
         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownAdminLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
           Admin
@@ -74,6 +77,9 @@ if(isset($_SESSION['loginUser'])):?>
     </ul>
   </div>
 </nav>
+<noscript>
+      <p class="alert alert-danger">Необходимо включить JAVASCRIPT в настройках браузера</p>
+</noscript>
 <!-- <div class="container-fluid-xl images-tabl"><a href="#">Таблица кабелей<img src="./images/krjpg.jpg" alt="Flowers in Chania" ></a></div> -->
 <!-- <a href="#"><img src="./images/krjpg.jpg" alt="Flowers in Chania" <img src="./images/krjpg.jpg" alt="Flowers in Chania" ></a> -->
 <div class="container-fluid-xl p-1" id="search">

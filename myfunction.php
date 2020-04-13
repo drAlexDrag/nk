@@ -35,6 +35,26 @@ function ColorType($type)
 }
 
 //Шапка таблиц по krossdata
+function TheadPanasonic()
+{
+	$output='';
+	$output.='
+	<table class="table table-bordered table-hover">
+	<thead>
+	<tr>
+	<th>Бокс/Абонент</th>
+	<th>Распределение</th>
+	<th>Номер <span class="icon">b</span></th>
+	<th>Имя абонента <span class="icon">b</span></th>
+	<th>Тип</th>
+	<th>Комментарии <span class="icon">b</span></th>
+	<th>Кабинет <span class="icon">b</span></th>
+	<th>Кросс</th>
+	</tr>
+	</thead>
+	<tbody id="myTable">';
+	return $output;
+}
 function TheadKrossdata()
 {
 	$output='';

@@ -6,6 +6,7 @@ require 'connect.php';
 // $debug->debug("Очень простое сообщение на консоль2", null, LOG);
 $dataPost=$_POST;
 $action=$dataPost["action"];
+$user=$dataPost["user"];
 switch ($action) {
   case 'loadData':
         ///////////Подгружаем текущие данные в окно редактирования данных кроса////////
@@ -28,6 +29,20 @@ switch ($action) {
   case 'updateData'://ПРоверка на наличие ncatalog.id
   $updateKrossData = json_decode($_POST['updateKrossData'], true);
 $krossdata = R::load( 'krossdata', $updateKrossData["id"] ); //reloads our data
+////////////////////////////////////////////////////////////////
+$logkross=R::dispense('logkross');
+$raspred=R::load( 'raspred', $krossdata->raspred_id);
+  $logkross->old_raspred_name=$raspred->raspred_name;
+  $logkross->old_number=$krossdata->number;
+  $ncatalog=R::load( 'ncatalog', $krossdata->ncatalog_id);
+  $logkross->old_ncatalog_name=$ncatalog->ncatalog_name;
+  $type=R::load( 'type', $krossdata->type_id);
+  $logkross->old_type_name=$type->type_name;
+  $logkross->old_comment=$krossdata->comment;
+  $area=R::load( 'area', $krossdata->area_id);
+  $logkross->area_name=$area->area_name;
+  R::store($logkross);
+////////////////////////////////////////////////////////////
 $krossdata->raspred_id=$updateKrossData["raspred"];
 $krossdata->number=$updateKrossData["number"];
 $krossdata->ncatalog_id=$updateKrossData["ncatalog"];
@@ -38,6 +53,25 @@ $ncatalog_cabinet->ncatalog_cabinet=$updateKrossData["cabinet"];
 R::store($ncatalog_cabinet);
 // $krossdata->cabinet=$updateKrossData["cabinet"];
 R::store($krossdata);
+/////////////////////ЛОГ ДАННЫХ КРОСА////////////////////
+  $logkross->data_id=$updateKrossData["id"];
+  $logkross->data_name=$krossdata->data;
+  $raspred=R::load( 'raspred', $updateKrossData["raspred"]);
+  $logkross->new_raspred_name=$raspred->raspred_name;
+  $logkross->new_number=$updateKrossData["number"];
+  $ncatalog=R::load( 'ncatalog', $updateKrossData["ncatalog"]);
+  $logkross->new_ncatalog_name=$ncatalog->ncatalog_name;
+  $type=R::load( 'type', $updateKrossData["type"]);
+  $logkross->new_type_name=$type->type_name;
+  $logkross->new_comment=$updateKrossData["comment"];
+  $area=R::load( 'area', $krossdata->area_id);
+  $logkross->area_name=$area->area_name;
+  $logkross->user=$user;
+  $logkross->operation="Обновление данных";
+  R::store($logkross);
+/////////////////////////////////////////////////////////
+
+
 
 $areaQuery = R::getAll('SELECT area_name FROM area');
 foreach($areaQuery as $row)
