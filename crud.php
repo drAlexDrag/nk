@@ -30,7 +30,9 @@ switch ($action) {
   $updateKrossData = json_decode($_POST['updateKrossData'], true);
 $krossdata = R::load( 'krossdata', $updateKrossData["id"] ); //reloads our data
 ////////////////////////////////////////////////////////////////
-$logkross=R::dispense('logkross');
+$logkross=R::dispense('logkross');//логируем данные до обновления
+$logkross->data_id=$updateKrossData["id"];
+  $logkross->data_name=$krossdata->data;
 $raspred=R::load( 'raspred', $krossdata->raspred_id);
   $logkross->old_raspred_name=$raspred->raspred_name;
   $logkross->old_number=$krossdata->number;
@@ -41,7 +43,7 @@ $raspred=R::load( 'raspred', $krossdata->raspred_id);
   $logkross->old_comment=$krossdata->comment;
   $area=R::load( 'area', $krossdata->area_id);
   $logkross->area_name=$area->area_name;
-  R::store($logkross);
+  // R::store($logkross);
 ////////////////////////////////////////////////////////////
 $krossdata->raspred_id=$updateKrossData["raspred"];
 $krossdata->number=$updateKrossData["number"];
@@ -54,8 +56,7 @@ R::store($ncatalog_cabinet);
 // $krossdata->cabinet=$updateKrossData["cabinet"];
 R::store($krossdata);
 /////////////////////ЛОГ ДАННЫХ КРОСА////////////////////
-  $logkross->data_id=$updateKrossData["id"];
-  $logkross->data_name=$krossdata->data;
+  
   $raspred=R::load( 'raspred', $updateKrossData["raspred"]);
   $logkross->new_raspred_name=$raspred->raspred_name;
   $logkross->new_number=$updateKrossData["number"];
@@ -67,7 +68,7 @@ R::store($krossdata);
   $area=R::load( 'area', $krossdata->area_id);
   $logkross->area_name=$area->area_name;
   $logkross->user=$user;
-  $logkross->operation="Обновление данных";
+  $logkross->operation="2";
   R::store($logkross);
 /////////////////////////////////////////////////////////
 
@@ -140,6 +141,25 @@ $area = R::load('area', $krossdata->area_id);
 // $debug->debug($area["area_name"], null, LOG);
 R::store($krossdata);
 $getinsertID=R::getinsertID();
+////////////////////////////////////////
+$krossdata = R::load( 'krossdata', $getinsertID );
+$logkross=R::dispense('logkross');
+$logkross->data_id=$krossdata->id;
+$logkross->data_name=$krossdata->data;
+$raspred=R::load( 'raspred', $krossdata->raspred_id);
+$logkross->new_raspred_name=$raspred->raspred_name;
+$logkross->new_number=$krossdata->number;
+$ncatalog=R::load( 'ncatalog', $krossdata->ncatalog_id);
+$logkross->new_ncatalog_name=$ncatalog->ncatalog_name;
+$type=R::load( 'type', $krossdata->type_id);
+$logkross->new_type_name=$type->type_name;
+$logkross->new_comment=$krossdata->comment;
+$area=R::load( 'area', $krossdata->area_id);
+$logkross->area_name=$area->area_name;
+$logkross->user=$user;
+$logkross->operation="1";
+R::store($logkross);
+////////////////////////////////////////
 $message.= '<div class="alert alert-info" role="alert">Площадка: <strong>'.$area["area_name"].'</strong><hr>Добавлены новые данные: <strong>'.$insertKrossData["data"].'</strong></div>';
 echo ($message);
 break;
@@ -172,12 +192,45 @@ break;
 case 'clearData':
 $clearKrossData = json_decode($_POST['clearKrossData'], true);
 $krossdata = R::load( 'krossdata', $clearKrossData["id"] );
+//////////////////////////////////////
+$logkross=R::dispense('logkross');
+$logkross->data_id=$clearKrossData["id"];
+$logkross->data_name=$krossdata->data;
+$raspred=R::load( 'raspred', $krossdata->raspred_id);
+$logkross->old_raspred_name=$raspred->raspred_name;
+$logkross->old_number=$krossdata->number;
+$ncatalog=R::load( 'ncatalog', $krossdata->ncatalog_id);
+$logkross->old_ncatalog_name=$ncatalog->ncatalog_name;
+$type=R::load( 'type', $krossdata->type_id);
+$logkross->old_type_name=$type->type_name;
+$logkross->old_comment=$krossdata->comment;
+$area=R::load( 'area', $krossdata->area_id);
+$logkross->area_name=$area->area_name;
+// R::store($logkross);
+//////////////////////////////////////
 $krossdata->raspred_id=1;
-$krossdata->number=9999999;
-$krossdata->ncatalog_id=3000;
-$krossdata->type_id=$_POST['selectTypeId'];
+$ncatalog=R::load( 'ncatalog', 3000);
+$krossdata->number=$ncatalog->ncatalog_number;
+$krossdata->ncatalog_id=$ncatalog->id;
+$krossdata->type_id=$clearKrossData['selectTypeId'];
 // $krossdata->cabinet="";
 R::store($krossdata);
+/////////////////////ЛОГ ДАННЫХ КРОСА////////////////////
+
+$raspred=R::load( 'raspred', $krossdata->raspred_id);
+$logkross->new_raspred_name=$raspred->raspred_name;
+$logkross->new_number=$krossdata->number;
+$ncatalog=R::load( 'ncatalog', $krossdata->ncatalog_id);
+$logkross->new_ncatalog_name=$ncatalog->ncatalog_name;
+$type=R::load( 'type', $krossdata->type_id);
+$logkross->new_type_name=$type->type_name;
+$logkross->new_comment=$krossdata->comment;
+$area=R::load( 'area', $krossdata->area_id);
+$logkross->area_name=$area->area_name;
+$logkross->user=$clearKrossData['user'];
+$logkross->operation="3";
+R::store($logkross);
+/////////////////////////////////////////////////////////
 $type=R::load( 'type', $_POST['selectTypeId'] );
 $out="";
   $out.='<div class="alert alert-danger" role="alert" id="dangeralert">Даннные <strong style="font-size:25px">'.$clearKrossData["data"].'</strong> очищены и помечены как <strong style="font-size:25px">'.$type->type_name.'</strong></div>';

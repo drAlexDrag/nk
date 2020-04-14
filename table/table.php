@@ -42,9 +42,9 @@
 
   <div class="collapse navbar-collapse" id="navbarNavDropdown">
     <ul class="navbar-nav">
-      <li class="nav-item active">
+     <!--  <li class="nav-item active">
         <a class="nav-link" href="../index.php">Домой <span class="icon-wite">S</span><span class="sr-only">(current)</span></a>
-      </li>
+      </li> -->
       <li class="nav-item">
         <a class="nav-link" href="#" onclick="editNumber()">Номера</a>
       </li>

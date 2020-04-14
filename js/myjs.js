@@ -3,6 +3,8 @@ $(document).ready(function(){
     $(".admin").remove();}
     $('[data-toggle="popover"]').popover();
     fetchData(1);
+    var user=$('#login').text();
+    sessionStorage.setItem("user", user);
   });
 var myWindow;
 
@@ -200,6 +202,7 @@ $('#result_auto').remove();
 function confirmInsert(){
   if($('#data').val() != '' && $('#raspred').attr('data-table-id') != '' && $("#number").val() !='' && $("#ncatalog").attr('data-table-id') != '' && $("#type").attr('data-table-id') != '')
    {
+     var user = $('#login').text();
   var action= "insertData";
   var objArea=paramArea();
   var insertKrossData = {
@@ -218,7 +221,7 @@ function confirmInsert(){
   $.ajax({
     url:"crud.php",
     method:"POST",
-    data:{action:action, insertKrossData:insertKrossData},
+    data:{action:action, insertKrossData:insertKrossData, user:user},
     dataType:"html",
     success:function(data)
     {
@@ -527,20 +530,22 @@ function clearData(){
 
 function confirmDataClear() {
   // body...
+  var user = $('#login').text();
+  var selectTypeId=confirm_type();
   var clearKrossData = {
     id: $('#data').attr('data-table-id'),
     data: $('#data').val(),
-    ncatalog: $("#ncatalog").attr('data-table-id')
+    ncatalog: $("#ncatalog").attr('data-table-id'),
+    user: user,
+    selectTypeId: selectTypeId
   }
-  var selectTypeId=confirm_type();
   var clearKrossData = JSON.stringify(clearKrossData);
-  
   var action="clearData";
   $.ajax({
       // url: 'dataexecute.php',
       url: 'crud.php',
       method:"POST",
-      data:{action:action, selectTypeId:selectTypeId, clearKrossData:clearKrossData},
+      data:{action:action, clearKrossData:clearKrossData},
       dataType:"html",
       // data:$('#dataCrudForm').serialize()+'&action='+action,
       success: function(data) {

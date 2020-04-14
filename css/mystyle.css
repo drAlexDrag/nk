@@ -1,3 +1,12 @@
+.operation-delete {
+    color: red; /* Цвет текста */
+   }
+.operation-update {
+    color: blue; /* Цвет текста */
+   }
+.operation-insert {
+    color: green; /* Цвет текста */
+   }
 .sector {
   font-size: 1vw;
     white-space: nowrap;

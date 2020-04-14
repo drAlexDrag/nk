@@ -21,6 +21,7 @@ $(document).ready(function(){
 
 
  });
+var user=sessionStorage.getItem('user');
 // function winOpen(argument) {
 //   var myWindow = window.open("", "_blank", "MsgWindow", "resizable=yes,top=50,left=50,width=200,height=100");
 //   myWindow.document.write("<p>This is 'MsgWindow'. I am 200px wide and 100px tall!</p>");
@@ -327,7 +328,7 @@ function get_number(id, number) {
     $.ajax({
       url:"update.php",
       method:"POST",
-      data:{id:id, column_name:column_name, value:value, table_name:table_name},
+      data:{id:id, column_name:column_name, value:value, table_name:table_name, user:user},
       success:function(data)
       {
         $('#alert_message').html('<div class="container-fluid alert alert-success">'+data+'</div>');
@@ -403,7 +404,7 @@ function get_number(id, number) {
      $.ajax({
        url:"insert.php",
        method:"POST",
-       data:{ncatalog_number:ncatalog_number, ncatalog_name:ncatalog_name, ncatalog_cabinet:ncatalog_cabinet},
+       data:{ncatalog_number:ncatalog_number, ncatalog_name:ncatalog_name, ncatalog_cabinet:ncatalog_cabinet, user:user},
        success:function(data)
        {
          var alert='<div class="alert alert-warning alert-dismissible" id="alert_message">\
@@ -435,7 +436,7 @@ function get_number(id, number) {
      $.ajax({
        url:"insert_table.php",
        method:"POST",
-       data:{table_name:table_name, name:name},
+       data:{table_name:table_name, name:name, user:user},
        success:function(data)
        {var alert='<div class="alert alert-warning alert-dismissible" id="alert_message">\
        <button type="button" class="close" data-dismiss="alert">&times;</button>\
@@ -481,7 +482,7 @@ function get_number(id, number) {
       $.ajax({
         url:"delete.php",
         method:"POST",
-        data:{id:id, table_name:table_name},
+        data:{id:id, table_name:table_name, user:user},
         success:function(data){
       // $('#alert_message').html('<div class="alert alert-success">'+data+'</div>');
       var alert='<div class="alert alert-danger alert-dismissible" id="alert_message">\

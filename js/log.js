@@ -6,6 +6,11 @@ $(document).ready(function(){
  function loadLogKross() {
     // body...
     var content='<h1 align="center">Лог кроссовых журналов</h1>\
+    <div><h4>\
+    <span class="badge badge-success">Новые данные</span>\
+    <span class="badge badge-primary">Обновление</span>\
+    <span class="badge badge-danger">Очистка</span></h4>\
+    </div>\
     <div class="table-responsive">\
     <br />\
     <table id="user_data" class="table table-bordered table-striped">\
@@ -27,7 +32,6 @@ $(document).ready(function(){
     <th data-name-col="new_comment">Комментарий new</th>\
     <th data-name-col="area_name">Журнал</th>\
     <th data-name-col="user">Пользователь</th>\
-    <th data-name-col="operation">Операция</th>\
     </tr>\
     </thead>\
     </table>\
@@ -41,6 +45,11 @@ $(document).ready(function(){
 function loadLogTables() {
     // body...
     var content='<h1 align="center">Лог таблиц</h1>\
+     <div><h4>\
+    <span class="badge badge-success">Новые данные</span>\
+    <span class="badge badge-primary">Обновление</span>\
+    <span class="badge badge-danger">Очистка</span></h4>\
+    </div>\
     <div class="table-responsive">\
     <br />\
     <table id="user_data" class="table table-bordered table-striped">\
@@ -53,13 +62,44 @@ function loadLogTables() {
     <th data-name-col="old_val">old Значение</th>\
     <th data-name-col="new_val">new Значение</th>\
     <th data-name-col="user">Пользователь</th>\
-    <th data-name-col="operation">Операция</th>\
     </tr>\
     </thead>\
     </table>\
     </div>';
     $("#content").html(content);
     var table_name="logtable";
+    var col=getAllColName();
+    col=JSON.stringify(col);
+    loadLog(table_name, col);
+}
+function loadLogNcatalog() {
+    // body...
+    var content='<h1 align="center">Лог справочника</h1>\
+    <div><h4>\
+    <span class="badge badge-success">Новые данные</span>\
+    <span class="badge badge-primary">Обновление</span>\
+    <span class="badge badge-danger">Очистка</span></h4>\
+    </div>\
+    <div class="table-responsive">\
+    <br />\
+    <table id="user_data" class="table table-bordered table-striped">\
+    <thead>\
+    <tr class="row_drag">\
+    <th data-name-col="id">ID</th>\
+    <th data-name-col="datechange">Дата</th>\
+    <th data-name-col="ncatalog_id">ID в каталоге</th>\
+    <th data-name-col="ncatalog_number">Номер</th>\
+    <th data-name-col="old_ncatalog_name">Имя old</th>\
+    <th data-name-col="new_ncatalog_name">Имя new</th>\
+    <th data-name-col="old_ncatalog_cabinet">Кабинет old</th>\
+    <th data-name-col="new_ncatalog_cabinet">Кабинет new</th>\
+    <th data-name-col="user">Пользователь</th>\
+    </tr>\
+    </thead>\
+    </table>\
+    </div>';
+    $("#content").html(content);
+    var table_name="logncatalog";
     var col=getAllColName();
     col=JSON.stringify(col);
     loadLog(table_name, col);

@@ -17,9 +17,33 @@ if(isset($_POST["id"], $_POST["table_name"]))
 	// R::debug( TRUE );
  // $query = "DELETE FROM ".$_POST["table_name"]." WHERE id = ".$_POST["id"]."";
 	$delet=R::load($_POST["table_name"], $_POST["id"]);
+	
  try {
     // R::exec($query);
     R::trash($delet);
+    if($_POST["table_name"]=="ncatalog"){
+			// $ncatalog=
+			$logncatalog=R::dispense('logncatalog');
+			$logncatalog->ncatalog_id=$delet->id;
+			$logncatalog->ncatalog_number=$delet->ncatalog_number;
+			$logncatalog->old_ncatalog_name=$delet->ncatalog_name;
+			$logncatalog->old_ncatalog_cabinet=$delet->ncatalog_cabinet;
+			$logncatalog->user=$_POST["user"];
+			$logncatalog->operation="3";
+			R::store($logncatalog);
+		}
+			else
+			{
+	$name_col=$_POST["table_name"]."_name";
+	$logtable=R::dispense('logtable');//логируем данные до обновления
+	$logtable->tabl=$_POST["table_name"];
+	$logtable->idval=$_POST["id"];
+	$logtable->old_val=$delet->$name_col;
+	$logtable->new_val="";
+	$logtable->user=$_POST["user"];
+	$logtable->operation="3";
+	R::store($logtable);
+}
     echo 'Информация удалена';
 } catch (RedBeanPHP\RedException\SQL $e) {
 	// echo "Непредвиденная ошибка:   ";

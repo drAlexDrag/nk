@@ -43,6 +43,9 @@ if(isset($_SESSION['loginUser'])):?>
         <a class="nav-link" href="./table/table.php" target="_blank">Таблицы</a>
       </li>
       <li class="nav-item">
+        <a class="nav-link" href="./log/log.php" target="_blank">Логи</a>
+      </li>
+      <li class="nav-item">
         <a class="nav-link" href="#" onclick="openWin()">Таблица кабелей</a>
       </li>
       
@@ -56,9 +59,6 @@ if(isset($_SESSION['loginUser'])):?>
           <a class="dropdown-item" href="#">Another action</a>
           <a class="dropdown-item" href="#">Something else here</a>
         </div>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="./log/log.php" target="_blank">Логи</a>
       </li>
            <li class="nav-item dropdown admin">
         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownAdminLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">

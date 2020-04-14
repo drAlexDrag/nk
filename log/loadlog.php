@@ -76,7 +76,22 @@ while($row = mysqli_fetch_array($result))
 	$coun_row=count($row);
  $sub_array = array();
  for ($i = 0; $i < $coun_row; $i++) {
-    $sub_array[] = '<div id='.$row["id"].'>' . $row[$i] . '</div>';
+ 	switch ($row["operation"]) {
+ 		case '1':
+ 			$sub_array[] = '<div class="text-success" id='.$row["id"].'>' . $row[$i] . '</div>';
+ 			break;
+ 		case '2':
+ 			$sub_array[] = '<div class="text-primary" id='.$row["id"].'>' . $row[$i] . '</div>';
+ 			break;
+ 		case '3':
+ 			$sub_array[] = '<div class="text-danger" id='.$row["id"].'>' . $row[$i] . '</div>';
+ 			break;
+ 		
+ 		default:
+ 			$sub_array[] = '<div id='.$row["id"].'>' . $row[$i] . '</div>';
+ 			break;
+ 	}
+    // $sub_array[] = '<div id='.$row["id"].'>' . $row[$i] . '</div>';
 }
  // var_dump($row);
  // $sub_array[] = '<div data-id="'.$row["id"].'" data-table="'.$_POST['table_name'].'" data-column="id" data-name="'.$row["id"].'">' . $row['id'] . '</div>';
