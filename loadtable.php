@@ -29,7 +29,15 @@ $output = '';
 if ($tablename=="ncatalog") {
   if ($columnname=="ncatalog_name") {
     # code...
-    $result = R::getAll( 'SELECT * FROM '.$tablename.' WHERE ncatalog_number='.$number.' AND '.$columnname.' LIKE \'%'.$query.'%\' ' );
+    if(is_numeric($query))
+      {$result = R::getAll( 'SELECT * FROM '.$tablename.' WHERE id LIKE \'%'.$query.'%\' ' );}
+
+    else
+      {$result = R::getAll( 'SELECT * FROM '.$tablename.' WHERE ncatalog_number='.$number.' AND '.$columnname.' LIKE \'%'.$query.'%\' ' );}
+
+
+
+
   } else {
     # code...
     $result = R::getAll( 'SELECT * FROM '.$tablename.' WHERE '.$columnname.' LIKE \'%'.$query.'%\' ' );
