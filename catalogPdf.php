@@ -104,9 +104,9 @@ $date = date('d/m/Y');
 header('Set-Cookie:fileDownload=true; path=/catalog');
  header('Content-Disposition: attachment; filename="Справочник телефонов за '.$date.'.pdf"');
  header("Content-Type: application/document");
-
+// $_SESSION["fileDownload"] = "true";
 $mpdf->Output('php://output');//('download/Справочник телефонов.pdf');
-//$mpdf->Output('catalog.pdf');
+// $mpdf->Output('Справочник телефонов за '.$date.'.pdf');
 // echo  $print_out;
 // die();
 ?>

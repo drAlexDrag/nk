@@ -3,7 +3,7 @@
 $username = 'dron';
 $password = 'port2100';
 // $connection = new PDO( 'mysql:host=192.168.50.37;dbname=kross', $username, $password ); // Create Object of PDO class by connecting to Mysql database
-$connection = new PDO( 'mysql:host=localhost;dbname=kross', $username, $password );
+$connection = new PDO( 'mysql:host=localhost;dbname=newkross', $username, $password );
 if(isset($_POST["action"])) //Check value of $_POST["action"] variable value is set to not
 {
  //For Load All Data

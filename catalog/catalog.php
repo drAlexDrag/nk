@@ -12,19 +12,17 @@
     <link rel="stylesheet" href="/icon/raphaelicons/raphaelicons.css" type="text/css">
     <link rel="stylesheet" href="/css/bootstrap.min.css" />
     <link rel="stylesheet" href="/css/mystyle.css" />
-   <!--  <link rel="stylesheet" href="/css/freenum.css" /> -->
     <script src="/js/jquery-3.4.1.min.js"></script>
     <script src="/js/popper.min.js"></script>
     <script src="/js/bootstrap.min.js"></script>
-    <!-- <script src="/js/myjs.js"></script> -->
-    <!-- <script src="/js/livereload.js"></script> -->
-  <style>
+ <!--  <style>
+/* Center the loader */
 /* Center the loader */
 #loader {
   position: absolute;
   left: 50%;
   top: 50%;
-  z-index: 1;
+  z-index: 1000000;
   width: 150px;
   height: 150px;
   margin: -75px 0 0 -75px;
@@ -70,15 +68,16 @@
   display: none;
   text-align: center;
 }
-</style>
+</style> -->
 </head>
 <body>
+  <!-- <div id="loader" style="display:none;"></div> -->
   <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
       <!-- Links -->
       <a class="navbar-brand" onclick="loadData(1)">Справочник телефонов ОАО "Интеграл"</a>
       <div class="collapse navbar-collapse">
   <ul class="navbar-nav">
-    <li class="nav-item">
+    <!-- <li class="nav-item">
       <a class="nav-link" href="#">Link 1</a>
     </li>
     <li class="nav-item">
@@ -86,21 +85,21 @@
     </li>
     <li class="nav-item">
       <a class="nav-link" href="#">Link 3</a>
-    </li>
+    </li> -->
       <li class="nav-item dropdown">
         <a class="nav-link dropdown-toggle" href="#" id="download" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
           Скачать
         </a>
         <div class="dropdown-menu" aria-labelledby="download">
-          <a download class="dropdown-item" href="../catalogPdf.php" onclick="countDownloads()"><img border="0" src="/images/pdf.png" alt="W3Schools" width="32" height="32"> PDF</a>
-          <a download class="dropdown-item" href="../catalogWord.php" onclick="countDownloads()"><img border="0" src="/images/docx.png" alt="W3Schools" width="32" height="32"> WORD</a>
+          <a download class="dropdown-item" href="../catalogPdf.php" onclick=" countDownloads()"><img border="0" src="/images/pdf.png" alt="W3Schools" width="32" height="32"> PDF</a>
+         <!--  <a download class="dropdown-item" href="../catalogWord.php" onclick="countDownloads()"><img border="0" src="/images/docx.png" alt="W3Schools" width="32" height="32"> WORD</a> -->
           
         </div>
       </li>
   </ul></div>
   <div class="collapse navbar-collapse">
-  <form class="form-inline ml-auto" action="/action_page.php">
-    <input class="form-control mr-sm-2" style="min-width: 30vw" type="text" placeholder="Поиск абонента по номеру или имени...">
+  <form class="form-inline ml-auto" onsubmit="searchNumber(); return false;">
+    <input class="form-control mr-sm-2" style="min-width: 30vw" type="text" placeholder="Поиск по номеру, имени, кабинету..." name="searchString" id="searchString">
     <button class="btn btn-success" type="submit">Поиск</button>
   </form></div>
   </nav>

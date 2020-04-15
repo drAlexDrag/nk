@@ -78,16 +78,7 @@
       <a class="navbar-brand" onclick="loadData(1)">Справочник телефонов ОАО "Интеграл"</a>
       <div class="collapse navbar-collapse">
   <ul class="navbar-nav">
-    <li class="nav-item">
-      <a class="nav-link" href="#">Link 1</a>
-    </li>
-    <li class="nav-item">
-      <a class="nav-link" href="#">Link 2</a>
-    </li>
-    <li class="nav-item">
-      <a class="nav-link" href="#">Link 3</a>
-    </li>
-      <li class="nav-item dropdown">
+         <li class="nav-item dropdown">
         <a class="nav-link dropdown-toggle" href="#" id="download" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
           Dropdown link
         </a>

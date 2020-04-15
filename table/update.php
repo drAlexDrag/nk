@@ -48,7 +48,6 @@ if(isset($_POST["id"]))
 	$logtable->user=$_POST["user"];
 	$logtable->operation="2";
 	R::store($logtable);
-	print_r( $logtable->getMeta( 'type' ));
 }
 
     // echo 'Информация обновлена';

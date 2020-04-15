@@ -693,7 +693,7 @@ function confirmCopy(pereKrossOut) {
 }
 //////////////////////Edit Catalog//////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////
-function loadData(page){
+function loadData(page){///////?????????????????????????????
 edit_catalog();
   };
 function edit_catalog() {
@@ -704,7 +704,7 @@ function edit_catalog() {
     success:function(data){
       // off();
       $('#content').html(data);
-      // $('#myModalCRUD').modal('hide');
+      $('#search').html('<hr>');
      
     }
   }); 
