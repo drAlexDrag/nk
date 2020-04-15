@@ -18,17 +18,16 @@ if(isset($_POST["department_id"]))
 $beans=R::getAll('SELECT ncatalog.id, ncatalog.ncatalog_name, ncatalog.ncatalog_number, ncatalog.ncatalog_cabinet, ncatalog.unit_id, ncatalog.department_id, ncatalog.visibility, ncatalog.authority
     FROM ncatalog
     WHERE ncatalog.unit_id=? AND ncatalog.department_id=?  ORDER BY ncatalog.authority', [$unit_id, $department_id]);
- $output_nav .= '
- <div class="sector"><a href="#" onclick="loadData(1)">Справочник телефонов </a><span class="icon-wite">=</span><a  href="#" onclick="unitCatalog('.$unit_id.')">'.$unit_name.'</a><span class="icon-wite">=</span><a href="#" class=" alert alert-info" style="color:blue; pointer-events: none">'.$department_name.'</a></div><hr>';
+ $output_nav .= '<div class="sector"><a href="#" onclick="loadData(1)">Справочник телефонов </a><span class="icon-wite">=</span><a  href="#" onclick="unitCatalog('.$unit_id.')">'.$unit_name.'</a><span class="icon-wite">=</span><a href="#" class=" alert alert-info" style="color:blue; pointer-events: none">'.$department_name.'</a></div><hr>';
   $output_department .= '<div class="table-responsive" >
   <button type="button" class="btn btn-info" onclick="authorityStart()">Зафиксировать</button>
-    <button type="button" class="btn btn-info" onclick="authorityConfirm()">Подтвердить</button>
+    <button type="button" class="btn btn-info" onclick="authorityConfirm()">Подтвердить</button><hr>
            <table class="table table-bordered table-hover">
                 <tr>
                      <th>Абонент</th>
                      <th>Телефон</th>
                      <th>Кабинет</th>
-                     <th style="width: 1%">п</th>
+                     <th style="width: 1%">№</th>
                 </tr> <tbody class="row_drag">';
 foreach($beans as $row)
  {

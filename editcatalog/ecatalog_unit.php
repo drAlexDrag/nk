@@ -26,14 +26,14 @@ $beans=R::getAll('SELECT ncatalog.id, ncatalog.ncatalog_name, ncatalog.ncatalog_
   $output_nav .='<div class="sector"><a href="#" onclick="loadData(1)">Справочник телефонов</a><span class="icon-wite">=</span><a href="#" class="alert alert-info" style="color:blue; pointer-events: none" data-unit-id="'.$unit_id.'" id="unit">'.$unit_name.'</a></div><hr>';
   $output_unit .= '
     <button type="button" class="btn btn-info" onclick="authorityStart()">Зафиксировать</button>
-    <button type="button" class="btn btn-info" onclick="authorityConfirm()">Подтвердить</button>
+    <button type="button" class="btn btn-info" onclick="authorityConfirm()">Подтвердить</button><hr>
   <div class="table-responsive">
   <table class="table table-bordered table-hover">
   <tr>
   <th>Абонент</th>
   <th>Телефон</th>
   <th>Кабинет</th>
-  <th style="width: 1%">п</th>
+  <th style="width: 1%">№</th>
   </tr>
    <tbody class="row_drag">';
   foreach($beans as $row)

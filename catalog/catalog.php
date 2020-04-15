@@ -15,63 +15,11 @@
     <script src="/js/jquery-3.4.1.min.js"></script>
     <script src="/js/popper.min.js"></script>
     <script src="/js/bootstrap.min.js"></script>
- <!--  <style>
-/* Center the loader */
-/* Center the loader */
-#loader {
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  z-index: 1000000;
-  width: 150px;
-  height: 150px;
-  margin: -75px 0 0 -75px;
-  border: 16px solid #f3f3f3;
-  border-radius: 50%;
-  border-top: 16px solid #3498db;
-  width: 120px;
-  height: 120px;
-  -webkit-animation: spin 2s linear infinite;
-  animation: spin 2s linear infinite;
-}
-
-@-webkit-keyframes spin {
-  0% { -webkit-transform: rotate(0deg); }
-  100% { -webkit-transform: rotate(360deg); }
-}
-
-@keyframes spin {
-  0% { transform: rotate(0deg); }
-  100% { transform: rotate(360deg); }
-}
-
-/* Add animation to "page content" */
-.animate-bottom {
-  position: relative;
-  -webkit-animation-name: animatebottom;
-  -webkit-animation-duration: 1s;
-  animation-name: animatebottom;
-  animation-duration: 1s
-}
-
-@-webkit-keyframes animatebottom {
-  from { bottom:-100px; opacity:0 } 
-  to { bottom:0px; opacity:1 }
-}
-
-@keyframes animatebottom { 
-  from{ bottom:-100px; opacity:0 } 
-  to{ bottom:0; opacity:1 }
-}
-
-#myDiv {
-  display: none;
-  text-align: center;
-}
-</style> -->
+ 
 </head>
 <body>
-  <!-- <div id="loader" style="display:none;"></div> -->
+  <!-- <button onclick="topFunction()" id="myBtn" title="Go to top">Top</button> -->
+
   <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
       <!-- Links -->
       <a class="navbar-brand" onclick="loadData(1)">Справочник телефонов ОАО "Интеграл"</a>
@@ -103,33 +51,6 @@
     <button class="btn btn-success" type="submit">Поиск</button>
   </form></div>
   </nav>
-<!--   <div id="loader" style="display:none;"></div> -->
-<!--   <button onclick="topFunction()" id="myBtn" title="Go to top"><span class="glyphicon glyphicon-arrow-up"></span></button>
-   -->
-<!--   <nav class="navbar navbar-inverse myNavbar" id="myNavbar" name="myNavbar">
-    <div class="container-fluid">
-      <div class="navbar-header">
-        <a class="navbar-brand" href="#" onclick="load_data(1)">Справочник телефонов ОАО "Интеграл"</a>
-      </div>
-      <ul class="nav navbar-nav">
-        <li class="active"><a href="#" onclick="load_data(1)">Главная</a></li>
-
-                   <li class="active">
-             <a class="dropdown-toggle" data-toggle="dropdown" href="#">Скачать справочник
-              <span class="caret"></span></a>
-              <ul class="dropdown-menu">
-
-                <li><a download href="../catalogPdf.php" onclick="countDownloads()"><img border="0" src="/images/pdf.png" alt="W3Schools" width="32" height="32"> PDF</a></li>
-                <li><a download href="../catalogWord.php" onclick="countDownloads()"><img border="0" src="/images/docx.png" alt="W3Schools" width="32" height="32"> WORD</a></li>
-              </ul>
-            </li>
-
-      </ul>
-      <div  id="poisk"></div>
-    </div>
-
-
-  </nav> -->
   <?php
 $ip=$_SERVER["REMOTE_ADDR"];
 $hostname = gethostbyaddr ($ip);
@@ -167,15 +88,8 @@ $hostname = gethostbyaddr ($ip);
 </div></div>
 </div>
 
-<!-- <hr>
-  <div class="container-fluid" >
-    <div class="row">
-      <div class="col-sm-6"  id="header_area"></div>
-      <div class="col-sm-6" style="text-align:right;" id="header_form"></div>
-    </div> -->
-
 <hr>
-    <!-- <div class="row" id="poisk"> -->      
+ 
       <noscript>
       <p class="alert alert-danger">Необходимо включить JAVASCRIPT в настройках браузера<br>
 Необходимо наличие установленного браузера:<br>
@@ -188,7 +102,7 @@ Internet explorer 11 и выше<br></p>
 <!-- <hr> -->
 
 
-    <div id="content">
+    <div class="container-fluid" id="content">
 <!-- <img id="loadImg" src="/images/load.gif" /> -->
 <?php
 require_once 'catalog_phone.php';?>
@@ -198,18 +112,21 @@ require_once 'catalog_phone.php';?>
 </div>
 <hr>
 <footer class="container-fluid text-left well">
+  <div class="row">
   <div class="col-md-4"><h3>Контакты</h3>
   Транзистор Кросс 3222<br>
   Мион Кросс 5133<br>
   Дзержинка Кросс 5811<br>
 </div>
+<div class="col-md-4"></div>
 <div class="col-md-4"><h4>Для работы со справочником</h4>
 Необходимо наличие установленного браузера:<br>
 Chrome  версии 49 и выше<br>
 Opera   версии 43 и выше<br>
 Firefox версии 46 и выше<br>
 Internet explorer 11 и выше<br></div>
-<div class="col-md-4"></div>
+
+</div>
 <div class="col-md-12 text-right" id="copywriteblock">ADragunov</div>
 
 </footer>
@@ -246,5 +163,6 @@ ADragunov@integral.by &nbsp; Драгунов, Александр<br>
   </div>
 </div>
 <script src="/js/catalog.js"></script>
+<script src="/js/all.js"></script>
 </body>
 </html>

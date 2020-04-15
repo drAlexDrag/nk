@@ -23,6 +23,7 @@ if(isset($_SESSION['loginUser'])):?>
     <!-- <script src="/js/livereload.js"></script> -->
 
   </head>
+  <button onclick="topFunction()" id="myBtn" title="Go to top">Top</button>
   <body style="font-size: 0.8rem;">
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
   <a class="navbar-brand" href="#">KROSS</a>
@@ -55,9 +56,9 @@ if(isset($_SESSION['loginUser'])):?>
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
           <a class="dropdown-item" href="#" onclick="catalogOpen()"><span>Справочник телефонов</span></a>
-          <a class="dropdown-item" href="#" onclick="edit_catalog()">Порядок отображения абонентов</a>
-          <a class="dropdown-item" href="#">Another action</a>
-          <a class="dropdown-item" href="#">Something else here</a>
+          <a class="dropdown-item" href="./editcatalog/ecatalog.php" target="_blank">Порядок отображения абонентов</a>
+<!--           <a class="dropdown-item" href="#">Another action</a>
+          <a class="dropdown-item" href="#">Something else here</a> -->
         </div>
       </li>
            <li class="nav-item dropdown admin">
@@ -129,6 +130,7 @@ $(document).ready(function(){
 
 
 <script src="/js/myjs.js"></script>
+<script src="/js/all.js"></script>
  <script>document.write('<script src="http://' + (location.host || 'localhost').split(':')[0] + ':35729/livereload.js?snipver=1"></' + 'script>')</script>
       </body>
       </html>

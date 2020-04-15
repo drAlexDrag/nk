@@ -1,6 +1,6 @@
 $(document).ready(function(){
 	loadData(1);
-  sessionStorage.setItem("fileDownload", "false");
+  // sessionStorage.setItem("fileDownload", "false");
 });
 function unitCatalog(id) {
 	// var unit_id = id;

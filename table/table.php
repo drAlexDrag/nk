@@ -23,17 +23,9 @@
 
   </head>
   <body>
+    <!-- <button onclick="topFunction()" id="myBtn" title="Go to top">Top</button> -->
  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
   <a class="navbar-brand" href="../index.php">KROSS
-<!--     <?php 
-  // $label = 'number';
-// $id = false;
-// if (  !empty( $_GET[ $label ] )  )
-{
-  // $id = $_GET[ $label ];
-  // echo ($id);
-}
-  ?> -->
     
   </a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
@@ -93,6 +85,7 @@
   </div>
 <div class="container-fluid" id="modalWindow"></div>
   <script src="/js/table.js"></script>
+  <script src="/js/all.js"></script>
 <!--    <script>document.write('<script src="http://' + (location.host || 'localhost').split(':')[0] + ':35729/livereload.js?snipver=1"></' + 'script>')</script> -->
 </body>
 </html>
