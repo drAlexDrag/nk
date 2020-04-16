@@ -1,7 +1,7 @@
 <!DOCTYPE html>
   <html>
   <head>
-    <title id="kross">АРМ КРОСС</title>
+    <title id="kross">ТАБЛИЦЫ</title>
     <meta http-equiv="Cache-Control" content="no-cache" />
     <meta http-equiv="Cache-Control" content="max-age=3600, must-revalidate" />
     <meta charset="utf-8">

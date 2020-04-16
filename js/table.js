@@ -83,17 +83,22 @@ function get_number(id, number) {
     <br />\
     <table id="user_data" class="table table-bordered table-striped">\
     <thead>\
-    <tr>\
-    <th>ID</th>\
-    <th>Распределение</th>\
-    <th></th>\
+    <tr class="row_drag">\
+    <th data-name-col="id">ID</th>\
+    <th data-name-col="raspred_name">Распределение</th>\
+    <th data-name-col="b"></th>\
     </tr>\
     </thead>\
     </table>\
     </div>';
-    var col=["id", "raspred_name"];
+    // var col=["id", "raspred_name"];
+    // var table_name="raspred";
+    // fetch_table(content, table_name, col);
+    $("#content").html(content);
     var table_name="raspred";
-    fetch_table(content, table_name, col);
+    var col=getAllColName();
+    col=JSON.stringify(col);
+    fetch_table(table_name, col);
   }
   function editType() {
     var content='<h1 align="center">Таблица типов</h1>\
@@ -104,17 +109,19 @@ function get_number(id, number) {
     <br />\
     <table id="user_data" class="table table-bordered table-striped">\
     <thead>\
-    <tr>\
-    <th>ID</th>\
-    <th>Тип линии</th>\
-    <th></th>\
+    <tr class="row_drag">\
+    <th data-name-col="id">ID</th>\
+    <th data-name-col="type_name">Тип линии</th>\
+    <th data-name-col="b"></th>\
     </tr>\
     </thead>\
     </table>\
     </div>';
-    var col=["id", "type_name"];
+    $("#content").html(content);
     var table_name="type";
-    fetch_table(content, table_name, col);
+    var col=getAllColName();
+    col=JSON.stringify(col);
+    fetch_table(table_name, col);
   }
   function editUnit() {
     var content='<h1 align="center">Таблица управлений</h1>\
@@ -125,17 +132,19 @@ function get_number(id, number) {
     <br />\
     <table id="user_data" class="table table-bordered table-striped">\
     <thead>\
-    <tr>\
-    <th>ID</th>\
-    <th>Управление</th>\
-    <th></th>\
+    <tr class="row_drag">\
+    <th data-name-col="id">ID</th>\
+    <th data-name-col="unit_name">Управление</th>\
+    <th data-name-col="b"></th>\
     </tr>\
     </thead>\
     </table>\
     </div>';
-    var col=["id", "unit_name"];
+    $("#content").html(content);
     var table_name="unit";
-    fetch_table(content, table_name, col);
+    var col=getAllColName();
+    col=JSON.stringify(col);
+    fetch_table(table_name, col);
   }
   function editDepartment() {
     var content='<h1 align="center">Таблица отделы/бюро</h1>\
@@ -146,17 +155,19 @@ function get_number(id, number) {
     <br />\
     <table id="user_data" class="table table-bordered table-striped">\
     <thead>\
-    <tr>\
-    <th>ID</th>\
-    <th>Отделы/бюро</th>\
-    <th></th>\
+    <tr class="row_drag">\
+    <th data-name-col="id">ID</th>\
+    <th data-name-col="department_name">Отделы/Бюро</th>\
+    <th data-name-col="b"></th>\
     </tr>\
     </thead>\
     </table>\
     </div>';
-    var col=["id", "department_name"];
+    $("#content").html(content);
     var table_name="department";
-    fetch_table(content, table_name, col);
+    var col=getAllColName();
+    col=JSON.stringify(col);
+    fetch_table(table_name, col);
   }
   function editSector() {
     var content='<h1 align="center">Таблица сектор</h1>\
@@ -167,17 +178,19 @@ function get_number(id, number) {
     <br />\
     <table id="user_data" class="table table-bordered table-striped">\
     <thead>\
-    <tr>\
-    <th>ID</th>\
-    <th>Сектор</th>\
-    <th></th>\
+    <tr class="row_drag">\
+    <th data-name-col="id">ID</th>\
+    <th data-name-col="sector_name">Сектор</th>\
+    <th data-name-col="b"></th>\
     </tr>\
     </thead>\
     </table>\
     </div>';
-    var col=["id", "sector_name"];
+    $("#content").html(content);
     var table_name="sector";
-    fetch_table(content, table_name, col);
+    var col=getAllColName();
+    col=JSON.stringify(col);
+    fetch_table(table_name, col);
   }
   function editFilial() {
     var content='<h1 align="center">Таблица филиалы</h1>\
@@ -188,17 +201,19 @@ function get_number(id, number) {
     <br />\
     <table id="user_data" class="table table-bordered table-striped">\
     <thead>\
-    <tr>\
-    <th>ID</th>\
-    <th>Филиал</th>\
-    <th></th>\
+    <tr class="row_drag">\
+    <th data-name-col="id">ID</th>\
+    <th data-name-col="filial_name">Филиал</th>\
+    <th data-name-col="b"></th>\
     </tr>\
     </thead>\
     </table>\
     </div>';
-    var col=["id", "filial_name"];
+    $("#content").html(content);
     var table_name="filial";
-    fetch_table(content, table_name, col);
+    var col=getAllColName();
+    col=JSON.stringify(col);
+    fetch_table(table_name, col);
   }
   function editArea() {
     var content='<h1 align="center">Таблица площадка</h1>\
@@ -209,20 +224,22 @@ function get_number(id, number) {
     <br />\
     <table id="user_data" class="table table-bordered table-striped">\
     <thead>\
-    <tr>\
-    <th>ID</th>\
-    <th>Площадка</th>\
-    <th></th>\
+    <tr class="row_drag">\
+    <th data-name-col="id">ID</th>\
+    <th data-name-col="area_name">Площадка</th>\
+    <th data-name-col="b"></th>\
     </tr>\
     </thead>\
     </table>\
     </div>';
-    var col=["id", "area_name"];
-    var table_name="area";
-    fetch_table(content, table_name, col);
-  }
-  function fetch_table(content, table_name, col){
     $("#content").html(content);
+    var table_name="area";
+    var col=getAllColName();
+    col=JSON.stringify(col);
+    fetch_table(table_name, col);
+  }
+  function fetch_table(table_name, col){
+    // $("#content").html(content);
     var dataTable = $('#user_data').DataTable({
       "processing" : true,
       "serverSide" : true,
@@ -240,7 +257,7 @@ function get_number(id, number) {
           "next": "Следующая",
         }
       },
-      "order" : [],
+      "order" : [0],
       "lengthMenu": [[20, 50, 100, -1], [20, 50, 100, "All"]],
       "ajax" : {
         url:"fetch_table.php",
@@ -260,10 +277,10 @@ function get_number(id, number) {
     <table id="user_data" class="table table-bordered table-striped">\
     <thead>\
     <tr>\
-    <th>ID абонента</th>\
-    <th>Номер</th>\
-    <th>Имя абонента</th>\
-    <th>Кабинет</th>\
+    <th data-name-col="">ID абонента</th>\
+    <th data-name-col="">Номер</th>\
+    <th data-name-col="">Имя абонента</th>\
+    <th data-name-col="">Кабинет</th>\
     <th></th>\
     </tr>\
     </thead>\
@@ -322,7 +339,16 @@ function get_number(id, number) {
     }
   });
   }
-  
+  //собираем все столбцы таблицы
+  function getAllColName() {
+    var colName=[];
+    var i = 0;  
+    $('.row_drag>th').each(function() { 
+        colName.push($(this).attr("data-name-col"));
+        i++;
+    }); 
+    return colName;
+}
   function update_data(id, column_name, value, table_name)
   {
     $.ajax({

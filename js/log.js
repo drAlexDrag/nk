@@ -1,9 +1,9 @@
 $(document).ready(function(){
 	if (($('#adm').text())!=1){
-    $(".admin").remove();}
-    $('[data-toggle="popover"]').popover();
-  });
- function loadLogKross() {
+        $(".admin").remove();}
+        $('[data-toggle="popover"]').popover();
+    });
+function loadLogKross() {
     // body...
     var content='<h1 align="center">Лог кроссовых журналов</h1>\
     <div><h4>\
@@ -45,7 +45,7 @@ $(document).ready(function(){
 function loadLogTables() {
     // body...
     var content='<h1 align="center">Лог таблиц</h1>\
-     <div><h4>\
+    <div><h4>\
     <span class="badge badge-success">Новые данные</span>\
     <span class="badge badge-primary">Обновление</span>\
     <span class="badge badge-danger">Очистка</span></h4>\
@@ -104,57 +104,45 @@ function loadLogNcatalog() {
     col=JSON.stringify(col);
     loadLog(table_name, col);
 }
-    function loadLog(table_name, col){
+function loadLog(table_name, col){
     var dataTable = $('#user_data').DataTable({
-      "processing" : true,
-      "serverSide" : true,
-      "info": true,
-      "searching": true,
-      "language": {
-        "info": "Показана страница _PAGE_ из _PAGES_ страниц",
-        "lengthMenu": "Показать _MENU_ строк на страницу",
-        "infoFiltered": " - отфильтровано из _MAX_ записей",
-        "zeroRecords": "Ничего похожего не найдено",
-        "infoEmpty": "Нет записей для показа",
-        "loadingRecords": "Пожалуйста, подождите - идет загрузка ...",
-        "processing": "Обработка ...",
-        "search": "Поиск:",
-        "paginate": {
-          "previous": "Предыдущая",
-          "next": "Следующая",
-        }
-      },
-      "order" : [[0,'desc']],
+        "processing" : true,
+        "serverSide" : true,
+        "info": true,
+        "searching": true,
+        "language": {
+            "info": "Показана страница _PAGE_ из _PAGES_ страниц",
+            "lengthMenu": "Показать _MENU_ строк на страницу",
+            "infoFiltered": " - отфильтровано из _MAX_ записей",
+            "zeroRecords": "Ничего похожего не найдено",
+            "infoEmpty": "Нет записей для показа",
+            "loadingRecords": "Пожалуйста, подождите - идет загрузка ...",
+            "processing": "Обработка ...",
+            "search": "Поиск:",
+            "paginate": {
+                "previous": "Предыдущая",
+                "next": "Следующая",
+            }
+        },
+        "order" : [[0,'desc']],
     // "deferLoading": [ 57, 100 ],
     // "search": {
     //   "search": 0000
     // },
     "lengthMenu": [[10, 25, 50, 100, -1], [10, 25, 50, 100, "All"]],
     "ajax" : {
-      url:"loadlog.php",
-      data:{table_name:table_name, col:col},
-      type:"POST"
+        url:"loadlog.php",
+        data:{table_name:table_name, col:col},
+        type:"POST"
     }
-  });
-  }
-  function getAllColName() {
-// texts = document.querySelectorAll(".row_drag>th");
-//            suball = texts.length;
-//     arrtext = Array.from(texts);
-// console.log(arrtext);
-//     var i = 0;
-//     for(; i < suball; i++){
-//         var co = i;
-//         console.log(arrtext[co]);
-//     }
-var colName=[];
-var i = 0;  
-$('.row_drag>th').each(function() { 
-// $(this).attr("data-name-col", i);
-colName.push($(this).attr("data-name-col"));
-// console.log(colName);
-i++;
-            }); 
-return colName;
-
+});
+}
+function getAllColName() {
+    var colName=[];
+    var i = 0;  
+    $('.row_drag>th').each(function() { 
+        colName.push($(this).attr("data-name-col"));
+        i++;
+    }); 
+    return colName;
 }

@@ -35,6 +35,9 @@ if(isset($_POST["id"]))
 			$logncatalog->$new=$_POST["value"];
 			$logncatalog->user=$_POST["user"];
 			$logncatalog->operation="2";
+
+			$oldvalue=$update->$col_name;
+
 			R::store($logncatalog);
 		}
 			else
@@ -47,10 +50,13 @@ if(isset($_POST["id"]))
 	$logtable->new_val=$_POST["value"];
 	$logtable->user=$_POST["user"];
 	$logtable->operation="2";
+
+	$oldvalue=$update->$name_col;
+
 	R::store($logtable);
 }
 
-    // echo 'Информация обновлена';
+    echo 'Информация обновлена: '.$oldvalue.'===>'.$value;
 } catch (RedBeanPHP\RedException\SQL $e) {
 
     echo $e->getMessage();

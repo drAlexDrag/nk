@@ -31,7 +31,7 @@ if(isset($_POST["name"]))
 				R::store($logtable);
 			// }
 
-			echo 'Информация добавлена';
+			echo 'Информация добавлена: '.$_POST["name"];;
 		} catch (RedBeanPHP\RedException\SQL $e) {
 
 			echo $e->getMessage();

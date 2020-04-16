@@ -1,28 +1,23 @@
 <?php
-//fetch.php
-// require_once "../phpdebug/phpdebug.php";//вывод в консоль
-// $debug = new PHPDebug();
-// $debug->debug("Очень простое сообщение на консоль", null, LOG);
 $connect = mysqli_connect("localhost", "dron", "port2100", "newkross");
-// $columns = array('ncatalog_number', 'ncatalog_name', 'ncatalog_cabinet');
-$table_col=$_POST['col'];
+$columns=json_decode($_POST['col'], true);
+// var_dump($columns);
 $table_name=$_POST['table_name'];
-$columns = array($table_col[0], $table_col[1]);
-// var_dump($_POST['sub']);
-$query = "SELECT * FROM ".$_POST['table_name'];
-
+$query = "SELECT * FROM ". $_POST['table_name'];
 if(isset($_POST["search"]["value"]))
 {
- $query .= '
- WHERE '.$table_col[0].' LIKE "%'.$_POST["search"]["value"].'%" 
- OR '.$table_col[1].' LIKE "%'.$_POST["search"]["value"].'%"
- ';
+	$col=json_decode($_POST['col'], true);
+ $query .= ' WHERE '.array_shift($col).' LIKE "%'.$_POST["search"]["value"].'%"';
+ unset($col[0]);
+ foreach($col as $row)
+{
+$query .=' OR '.$row.' LIKE "%'.$_POST["search"]["value"].'%" ';
+}
 }
 
 if(isset($_POST["order"]))
 {
- $query .= 'ORDER BY '.$columns[$_POST['order']['0']['column']].' '.$_POST['order']['0']['dir'].' 
- ';
+ $query .= 'ORDER BY '.$columns[$_POST['order']['0']['column']].' '.$_POST['order']['0']['dir'].''; 
 }
 else
 {
@@ -44,10 +39,20 @@ $data = array();
 
 while($row = mysqli_fetch_array($result))
 {
- $sub_array = array();
- $sub_array[] = '<div  class="update" data-id="'.$row["id"].'" data-table="'.$table_name.'" data-column="'.$table_col[0].'">' . $row["id"] . '</div>';
- $sub_array[] = '<div contenteditable class="update" data-id="'.$row["id"].'" data-table="'.$table_name.'" data-column="'.$table_col[1].'">' . $row[$table_col[1]] . '</div>';
- $sub_array[] ='<button type="button" name="delete" class="btn-sm btn-danger btn-xs delete" id="'.$row["id"].'" data-table="'.$table_name.'">Удалить</button>';
+	$coun_row=count($row);
+	$sub_array = array();
+	for ($i = 0; $i < $coun_row; $i++) {
+		if($i==($coun_row-4))
+		{$sub_array[] ='<button type="button" name="delete" class="btn-sm btn-danger btn-xs delete" id="'.$row["id"].'" data-table="'.$table_name.'">Удалить</button>';}
+	elseif($i==0)
+		{$sub_array[] = '<div class="update" data-id="'.$row["id"].'" data-table="'.$table_name.'" data-column="'.$columns[$i].'">' . $row[$i] . '</div>';}
+		else
+			{$sub_array[] = '<div contenteditable  class="update" data-id="'.$row["id"].'" data-table="'.$table_name.'" data-column="'.$columns[$i].'">' . $row[$i] . '</div>';}
+ // $sub_array = array();
+ // $sub_array[] = '<div  class="update" data-id="'.$row["id"].'" data-table="'.$table_name.'" data-column="'.$table_col[0].'">' . $row["id"] . '</div>';
+ // $sub_array[] = '<div contenteditable class="update" data-id="'.$row["id"].'" data-table="'.$table_name.'" data-column="'.$table_col[1].'">' . $row[$table_col[1]] . '</div>';
+ // $sub_array[] ='<button type="button" name="delete" class="btn-sm btn-danger btn-xs delete" id="'.$row["id"].'" data-table="'.$table_name.'">Удалить</button>';
+	}
  $data[] = $sub_array;
 }
 
