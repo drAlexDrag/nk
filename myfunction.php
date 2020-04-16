@@ -93,8 +93,8 @@ function TheadKrossdata()
 function TbodyKrossdata($row, $color)
 {
 	$output='';
-	$output .= '<tr '.$color.'>
-	<td  class="edit_daxta" data-id="'.$row["id"].'" data-area-name="'.$row["area_name"].'"   onmousedown="isKeyPressed(event, '.$row["id"].')"><b>'.$row["data"].' </b><span class="icon">?</span></td>
+	$output .= '<tr style="cursor: default" '.$color.'>
+	<td class="edit_daxta" data-id="'.$row["id"].'" data-area-name="'.$row["area_name"].'"   onmousedown="isKeyPressed(event, '.$row["id"].')"><b>'.$row["data"].' </b><span class="icon">?</span></td>
 	<td>'.$row["raspred_name"].'</td>
 	<td class="data-number" title="Быстрый поиск по номеру: '.$row["number"].'">'.$row["number"].' </td>
 	<td class="data-name" title="ID абонента-'.$row["ncid"].'">'.$row["ncatalog_name"].'</td>

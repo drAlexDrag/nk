@@ -48,10 +48,6 @@ while($row = mysqli_fetch_array($result))
 		{$sub_array[] = '<div class="update" data-id="'.$row["id"].'" data-table="'.$table_name.'" data-column="'.$columns[$i].'">' . $row[$i] . '</div>';}
 		else
 			{$sub_array[] = '<div contenteditable  class="update" data-id="'.$row["id"].'" data-table="'.$table_name.'" data-column="'.$columns[$i].'">' . $row[$i] . '</div>';}
- // $sub_array = array();
- // $sub_array[] = '<div  class="update" data-id="'.$row["id"].'" data-table="'.$table_name.'" data-column="'.$table_col[0].'">' . $row["id"] . '</div>';
- // $sub_array[] = '<div contenteditable class="update" data-id="'.$row["id"].'" data-table="'.$table_name.'" data-column="'.$table_col[1].'">' . $row[$table_col[1]] . '</div>';
- // $sub_array[] ='<button type="button" name="delete" class="btn-sm btn-danger btn-xs delete" id="'.$row["id"].'" data-table="'.$table_name.'">Удалить</button>';
 	}
  $data[] = $sub_array;
 }

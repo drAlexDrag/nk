@@ -98,7 +98,7 @@ function get_number(id, number) {
     var table_name="raspred";
     var col=getAllColName();
     col=JSON.stringify(col);
-    fetch_table(table_name, col);
+    fetch_data(table_name, col);
   }
   function editType() {
     var content='<h1 align="center">Таблица типов</h1>\
@@ -121,7 +121,7 @@ function get_number(id, number) {
     var table_name="type";
     var col=getAllColName();
     col=JSON.stringify(col);
-    fetch_table(table_name, col);
+    fetch_data(table_name, col);
   }
   function editUnit() {
     var content='<h1 align="center">Таблица управлений</h1>\
@@ -144,7 +144,7 @@ function get_number(id, number) {
     var table_name="unit";
     var col=getAllColName();
     col=JSON.stringify(col);
-    fetch_table(table_name, col);
+    fetch_data(table_name, col);
   }
   function editDepartment() {
     var content='<h1 align="center">Таблица отделы/бюро</h1>\
@@ -167,7 +167,7 @@ function get_number(id, number) {
     var table_name="department";
     var col=getAllColName();
     col=JSON.stringify(col);
-    fetch_table(table_name, col);
+    fetch_data(table_name, col);
   }
   function editSector() {
     var content='<h1 align="center">Таблица сектор</h1>\
@@ -190,7 +190,7 @@ function get_number(id, number) {
     var table_name="sector";
     var col=getAllColName();
     col=JSON.stringify(col);
-    fetch_table(table_name, col);
+    fetch_data(table_name, col);
   }
   function editFilial() {
     var content='<h1 align="center">Таблица филиалы</h1>\
@@ -213,7 +213,7 @@ function get_number(id, number) {
     var table_name="filial";
     var col=getAllColName();
     col=JSON.stringify(col);
-    fetch_table(table_name, col);
+    fetch_data(table_name, col);
   }
   function editArea() {
     var content='<h1 align="center">Таблица площадка</h1>\
@@ -236,7 +236,7 @@ function get_number(id, number) {
     var table_name="area";
     var col=getAllColName();
     col=JSON.stringify(col);
-    fetch_table(table_name, col);
+    fetch_data(table_name, col);
   }
   function fetch_table(table_name, col){
     // $("#content").html(content);
@@ -276,12 +276,12 @@ function get_number(id, number) {
     <br />\
     <table id="user_data" class="table table-bordered table-striped">\
     <thead>\
-    <tr>\
-    <th data-name-col="">ID абонента</th>\
-    <th data-name-col="">Номер</th>\
-    <th data-name-col="">Имя абонента</th>\
-    <th data-name-col="">Кабинет</th>\
-    <th></th>\
+    <tr class="row_drag">\
+    <th data-name-col="id">ID абонента</th>\
+    <th data-name-col="ncatalog_number">Номер</th>\
+    <th data-name-col="ncatalog_name">Имя абонента</th>\
+    <th data-name-col="ncatalog_cabinet">Кабинет</th>\
+    <th data-name-col="print"></th>\
     </tr>\
     </thead>\
     </table>\
@@ -295,17 +295,22 @@ function get_number(id, number) {
     //    <th></th>\
     //  </tr>\
     //  </tfoot>\
-    var col=["ncatalog_number", "ncatalog_name", "ncatalog_cabinet"];
+    // var col=["ncatalog_number", "ncatalog_name", "ncatalog_cabinet"];
+    // var table_name="ncatalog";
+    // fetch_data(content, table_name, number);
+    $("#content").html(content);
     var table_name="ncatalog";
-    fetch_data(content, table_name, number);
+    var col=getAllColName();
+    col=JSON.stringify(col);
+    fetch_data(table_name, col, number);
   }
 
-  function fetch_data(content, table_name, number)
+  function fetch_data(table_name, col, number)
   {
-    $("#content").html(content);
-    var ncatalog_number="ncatalog_number";
-    var ncatalog_name="ncatalog_name";
-    var ncatalog_cabinet="ncatalog_cabinet";
+    // $("#content").html(content);
+    // var ncatalog_number="ncatalog_number";
+    // var ncatalog_name="ncatalog_name";
+    // var ncatalog_cabinet="ncatalog_cabinet";
     // var asd="7648597";
     var dataTable = $('#user_data').DataTable({
       "processing" : true,
@@ -334,7 +339,7 @@ function get_number(id, number) {
     "lengthMenu": [[10, 25, 50, 100, -1], [10, 25, 50, 100, "All"]],
     "ajax" : {
       url:"fetch.php",
-      data:{ncatalog_number:ncatalog_number, ncatalog_name:ncatalog_name, ncatalog_cabinet:ncatalog_cabinet, table_name:table_name},
+      data:{table_name:table_name, col:col},
       type:"POST"
     }
   });
