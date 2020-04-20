@@ -128,6 +128,7 @@
 #myBtn:hover {
   background-color: #555; /* Add a dark-grey background on hover */
 }
-/*#pagin  a {
-  font: 35px "Lucida Grande", Helvetica, Arial, sans-serif;
+
+.navbar-dark .navbar-nav .nav-link {
+    color: rgba(255,255,255,1);
 }

@@ -1,5 +1,5 @@
 <?php
-//%progdir%\modules\php\%phpdriver%\php-win.exe -c %progdir%\userdata\temp\config\php.ini -q -f %sitedir%\nkross\dump\dump.php// for cron
+//%progdir%\modules\php\%phpdriver%\php-win.exe -c %progdir%\userdata\temp\config\php.ini -q -f %sitedir%\newkross\dump\dump.php// for cron
 date_default_timezone_set('Europe/Minsk');
 $out="";
 $dump_dir_if = "D:/DUMP/NKROSS/";

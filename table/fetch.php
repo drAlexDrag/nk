@@ -7,8 +7,10 @@ $query = "SELECT * FROM ". $_POST['table_name'];
 if(isset($_POST["search"]["value"]))
 {
 	$col=json_decode($_POST['col'], true);
+	//unset($col[0]);//при поиске без id
  $query .= ' WHERE '.array_shift($col).' LIKE "%'.$_POST["search"]["value"].'%"';
- unset($col[0]);
+ // unset($col[0]);
+ // var_dump($col);
  foreach($col as $row)
 {
 $query .=' OR '.$row.' LIKE "%'.$_POST["search"]["value"].'%" ';

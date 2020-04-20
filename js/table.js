@@ -331,7 +331,7 @@ function get_number(id, number) {
           "next": "Следующая",
         }
       },
-      "order" : [],
+      "order" : [0],
     // "deferLoading": [ 57, 100 ],
     "search": {
       "search": number

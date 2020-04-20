@@ -50,7 +50,7 @@ if(isset($_SESSION['loginUser'])):?>
         <a class="nav-link" href="#" onclick="openWin()">Таблица кабелей</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="#" onclick="dump()">Dump</a>
+        <a class="nav-link" href="#" onclick="dump()">Копировать БД</a>
       </li>
       
       <li class="nav-item dropdown">
