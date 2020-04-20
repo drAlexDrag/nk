@@ -7,7 +7,15 @@ $(document).ready(function(){
     sessionStorage.setItem("user", user);
   });
 var myWindow;
-
+function dump() {
+ $.ajax({
+  url: "/dump/dump.php",
+  cache: false,
+  success: function(html){
+    $("#content").html(html);
+  }
+});
+}
 function openWin() {
   myWindow = window.open("", "_blank", "MsgWindow", "resizable=yes,top=50,left=1,width=200,height=100");
   myWindow.document.write('<div class="container-fluid-xl images-tabl"><a href="#"><img src="../images/krjpg.jpg"></a></div>\
