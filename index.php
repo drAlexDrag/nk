@@ -40,19 +40,22 @@ if(isset($_SESSION['loginUser'])):?>
       <li class="nav-item active">
         <a class="nav-link" href="#" onclick="fetchData(1)">Домой <span class="icon-wite">S</span><span class="sr-only">(current)</span></a>
       </li>
-      <li class="nav-item">
-        <a class="nav-link" href="./table/table.php" target="_blank">Таблицы</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="./log/log.php" target="_blank">Логи</a>
+
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownDB" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          БД <span class="icon-wite">Ø</span>
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdownDB">
+          <a class="dropdown-item" href="./table/table.php" target="_blank">Таблицы</a>
+
+          <a class="dropdown-item" href="./log/log.php" target="_blank">Логи</a>
+
+          <a class="dropdown-item" href="#" onclick="dump()">Резервное копирование БД</a>
+        </div>
       </li>
       <li class="nav-item">
         <a class="nav-link" href="#" onclick="openWin()">Таблица кабелей</a>
       </li>
-      <li class="nav-item">
-        <a class="nav-link" href="#" onclick="dump()">Копировать БД</a>
-      </li>
-      
       <li class="nav-item dropdown">
         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
           Справочник
@@ -60,8 +63,6 @@ if(isset($_SESSION['loginUser'])):?>
         <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
           <a class="dropdown-item" href="#" onclick="catalogOpen()"><span>Справочник телефонов</span></a>
           <a class="dropdown-item" href="./editcatalog/ecatalog.php" target="_blank">Порядок отображения абонентов</a>
-<!--           <a class="dropdown-item" href="#">Another action</a>
-          <a class="dropdown-item" href="#">Something else here</a> -->
         </div>
       </li>
            <li class="nav-item dropdown admin">
@@ -84,8 +85,6 @@ if(isset($_SESSION['loginUser'])):?>
 <noscript>
       <p class="alert alert-danger">Необходимо включить JAVASCRIPT в настройках браузера</p>
 </noscript>
-<!-- <div class="container-fluid-xl images-tabl"><a href="#">Таблица кабелей<img src="./images/krjpg.jpg" alt="Flowers in Chania" ></a></div> -->
-<!-- <a href="#"><img src="./images/krjpg.jpg" alt="Flowers in Chania" <img src="./images/krjpg.jpg" alt="Flowers in Chania" ></a> -->
 <div class="container-fluid-xl p-1" id="search">
 
 </div>
@@ -137,9 +136,6 @@ $(document).ready(function(){
  <script>document.write('<script src="http://' + (location.host || 'localhost').split(':')[0] + ':35729/livereload.js?snipver=1"></' + 'script>')</script>
       </body>
       </html>
-     <!--  <?php
-      //require('modal.php');
-      ?> -->
     <?php else:?>
       <script>window.location="login.php";</script>
 
