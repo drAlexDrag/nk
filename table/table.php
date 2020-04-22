@@ -12,12 +12,16 @@
     <link rel="stylesheet" href="/css/bootstrap.min.css" />
     <link rel="stylesheet" href="/css/mystyle.css" />
     <link rel="stylesheet" href="/css/datatables.min.css" />
+    <link rel="stylesheet" href="/css/jquery.dataTables.min.css" />
+    <link rel="stylesheet" href="/css/responsive.dataTables.min.css" />
     <!-- <link rel="stylesheet" href="/css/dataTables.searchPane.min.css" /> -->
     <script src="/js/jquery-3.4.1.min.js"></script>
     <script src="/js/jquery-ui.min.js"></script>
     <script src="/js/popper.min.js"></script>
     <script src="/js/bootstrap.min.js"></script>
     <script src="/js/datatables.min.js"></script>
+    <script src="/js/jquery.dataTables.min.js"></script>
+    <script src="/js/dataTables.responsive.min.js"></script>
     <!-- <script src="/js/dataTables.searchPane.min.js"></script> -->
     <!-- <script src="/js/dataTables.bootstrap4.min.js"></script> -->
 

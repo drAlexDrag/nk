@@ -28,7 +28,8 @@ function closeWin() {
 function tabl() {
   // body...
   var number = $('#number').val();
-  window.open('./table/table.php?number='+number);
+  // window.open('./table/table.php?number='+number);
+  window.open('./table/table.php');
 }
 function tablnumber(number) {
   // body...

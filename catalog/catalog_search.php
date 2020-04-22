@@ -3,14 +3,15 @@ require_once '../connect.php';
 if (isset($_POST)){
   $searchString=$_POST["searchString"];
   $visibility="1";
-	$beans=R::getAll("SELECT ncatalog.id, ncatalog.ncatalog_name, ncatalog.ncatalog_number, ncatalog.ncatalog_cabinet, ncatalog.authority, ncatalog.unit_id, ncatalog.department_id, ncatalog.sector_id, unit.unit_name, department.department_name, sector.sector_name, ncatalog.visibility
+  $free="0";
+	$beans=R::getAll("SELECT ncatalog.id, ncatalog.ncatalog_name, ncatalog.ncatalog_number, ncatalog.ncatalog_cabinet, ncatalog.authority, ncatalog.unit_id, ncatalog.department_id, ncatalog.sector_id, unit.unit_name, department.department_name, sector.sector_name, ncatalog.visibility, ncatalog.free
     FROM ncatalog
     INNER JOIN unit ON ncatalog.unit_id = unit.id
     INNER JOIN department ON ncatalog.department_id = department.id
     INNER JOIN sector ON ncatalog.sector_id = sector.id
  WHERE (ncatalog.ncatalog_number LIKE ? 
  OR ncatalog.ncatalog_name LIKE ? 
- OR ncatalog.ncatalog_cabinet LIKE ?) AND ncatalog.visibility=?", ['%'.$searchString.'%', '%'.$searchString.'%', '%'.$searchString.'%', $visibility]);
+ OR ncatalog.ncatalog_cabinet LIKE ?) AND ncatalog.free=? AND ncatalog.visibility=?", ['%'.$searchString.'%', '%'.$searchString.'%', '%'.$searchString.'%', $free, $visibility]);
 
   $output .= '
   
@@ -43,7 +44,4 @@ if (isset($_POST)){
  }
 }
 echo  $output;
-// WHERE ncatalog_number LIKE \"%".$_POST['searchString']."%\" OR ncatalog_name LIKE \"%".$_POST['searchString']."%\" OR ncatalog_cabinet LIKE \"%".$_POST['searchString']."%\" AND visibility NOT IN ('0')");
-// WHERE ncatalog_number LIKE ? OR ncatalog_name LIKE ? OR ncatalog_cabinet LIKE ? AND visibility IN ("1")', [ '%' . //$_POST['searchString'] . '%', '%' . $_POST['searchString'] . '%', '%' . $_POST['searchString'] . '%' ]);
-// var_dump($beans);
 ?>

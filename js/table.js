@@ -14,9 +14,9 @@ $(document).ready(function(){
    })();
    $("#modalWindow").load("/views/modal_cat.ejs");
    editNumber();
-   // document.querySelector("#user_data_filter input").value = gets['number'];
-   if (gets['number']!=null)
-     {editNumber(gets['number']);}
+ 
+   // if (gets['number']!=null)
+   //   {editNumber(gets['number']);}
 
 
 
@@ -317,6 +317,17 @@ function get_number(id, number) {
       "serverSide" : true,
       "info": true,
       "searching": true,
+      // responsive: {
+      //       details: {
+      //           display: $.fn.dataTable.Responsive.display.modal( {
+      //               header: function ( row ) {
+      //                   var data = row.data();
+      //                   return 'Details for '+data[0]+' '+data[1];
+      //               }
+      //           } ),
+      //           renderer: $.fn.dataTable.Responsive.renderer.tableAll()
+      //       }
+      //   },
       "language": {
         "info": "Показана страница _PAGE_ из _PAGES_ страниц",
         "lengthMenu": "Показать _MENU_ строк на страницу",
@@ -547,7 +558,22 @@ function get_number(id, number) {
       }, 10000);
     }
   });
-
+////////////////////////
+// function editSub(id) {
+//   $('#example').DataTable( {
+//         responsive: {
+//             details: {
+//                 display: $.fn.dataTable.Responsive.display.modal( {
+//                     header: function ( row ) {
+//                         var data = row.data();
+//                         return 'Details for '+data[0]+' '+data[1];
+//                     }
+//                 } ),
+//                 renderer: $.fn.dataTable.Responsive.renderer.tableAll()
+//             }
+//         }
+//     } );}
+////////////////////////
   function editSub(id) {
   // body...
   $("#editSub").modal("show");
@@ -571,12 +597,14 @@ function get_number(id, number) {
       $('#department').attr({"data-table-id":data.department});
       $('#sector').val(data.sector_name);
       $('#sector').attr({"data-table-id":data.sector});
+      $('#visibility').val(data.visibility);
+      $('#free').val(data.free);
 //       var val = getRadioVal( document.getElementById('myModalForm'), 'freebusy' );
 // alert(val);
-      if(data.free=="0"){$('#free').attr('checked', true)}
-      else{$('#free').attr('checked', false)}
-      if(data.visibility=="0"){$('#visibility').attr('checked', false)}
-      else{$('#visibility').attr('checked', true)}
+      // if(data.free=="0"){$('#free').attr('checked', true)}
+      // else{$('#free').attr('checked', false)}
+    //   if(data.visibility=="0"){$('#visibility').attr('checked', false)}
+    //   else{$('#visibility').attr('checked', true)}
     }
 })
   .done(function() {
@@ -689,11 +717,12 @@ function btnblock(){
     var unit_id=$('#unit').attr("data-table-id");
     var department_id=$('#department').attr("data-table-id");
     var sector_id=$('#sector').attr("data-table-id");
-var free;
-    if ($('#free').is(":checked")){free="0";}
-    else {free="1";}
-if ($('#visibility').is(":checked")){visibility="1";}
-else {visibility="0";}
+    var free=$('#free').val();
+    var visibility=$('#visibility').val();
+//     if ($('#free').is(":checked")){free="0";}
+//     else {free="1";}
+// if ($('#visibility').is(":checked")){visibility="1";}
+// else {visibility="0";}
    var updatedata={
       action: "update",
       id: id,

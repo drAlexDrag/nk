@@ -45,7 +45,7 @@ while($row = mysqli_fetch_array($result))
 	// var_dump($row);
 	$sub_array = array();
 	switch ($table_name) {
-		case 'ncatalog':
+		case 'ncatalog'://Для ncatalog
 			# code...
 		for ($i = 0; $i < $coun_row; $i++) {
 		if($i==($coun_row-18))
@@ -54,7 +54,7 @@ while($row = mysqli_fetch_array($result))
 		{$sub_array[] = '<div class="update" onclick="editSub(' .$row["id"]. ')" data-id="'.$row["id"].'" data-table="'.$table_name.'" data-column="'.$columns[$i].'">' . $row[$i] . '<span class="icon">Ü</span></div>';}
 		elseif($i==1)
 		{
-			if($row["free"]=="0"){$sub_array[] = '<div style="color:blue;" class="update krossdata" data-id="'.$row["id"].'" data-table="'.$table_name.'" data-column="'.$columns[$i].'" name="'.$row["id"].'" title="Двойной клик для просмотра исходящих данных по Дзержинке" onclick="get_number('.$row["id"].', '. $row["ncatalog_number"] .')">' . $row[$i] . '</div>';}
+			if($row["free"]=="1"){$sub_array[] = '<div style="color:blue;" class="update krossdata" data-id="'.$row["id"].'" data-table="'.$table_name.'" data-column="'.$columns[$i].'" name="'.$row["id"].'" title="Двойной клик для просмотра исходящих данных по Дзержинке" onclick="get_number('.$row["id"].', '. $row["ncatalog_number"] .')">' . $row[$i] . '</div>';}
 			else{$sub_array[] = '<div style="color:red;" class="update krossdata" data-id="'.$row["id"].'" data-table="'.$table_name.'" data-column="'.$columns[$i].'" name="'.$row["id"].'" title="Двойной клик для просмотра исходящих данных по Дзержинке" onclick="get_number('.$row["id"].', '. $row["ncatalog_number"] .')">' . $row[$i] . '</div>';}
 		}
 		elseif($i==2)
@@ -66,7 +66,7 @@ while($row = mysqli_fetch_array($result))
 	}
 			break;
 		
-		default:
+		default://Для остальных таблиц по дефолту
 			# code...
 		for ($i = 0; $i < $coun_row; $i++) {
 		if($i==($coun_row-4))

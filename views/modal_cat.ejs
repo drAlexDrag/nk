@@ -18,10 +18,17 @@
             <div class="modal-body row"><!-- Modal body -->
 <div class="col-sm-10" style="border-right: 5px solid #ccc;">
         <form id="myModalForm">
-<div class="custom-control custom-checkbox">
+<!-- <div class="custom-control custom-checkbox">
     <input type="checkbox" class="custom-control-input" id="free" name="free" checked="true">
     <label class="custom-control-label" for="free">Свободен</label>
-  </div>
+  </div> -->
+  <div class="input-group">
+      <span class="input-group-text">Занятость номера</span>
+      <select class="form-control" size="1" name="free" id="free">
+            <option value="1">Номер свободен (не используется)</option>
+            <option  value="0" >Номер занят (используется)</option>
+          </select>
+    </div>
   <hr>
 
   <div class="blockbtn form-group row">
@@ -55,11 +62,17 @@
     <div class="col-sm-10">
     <input type="text" class="form-control autoListNcatalog" data-table="sector" data-table-id="" id="sector" placeholder="" name="sector">
   </div></div><hr>
-
-<div class="custom-control custom-checkbox">
+<div class="input-group">
+      <span class="input-group-text">Видимость абонента в справочнике</span>
+      <select class="form-control" size="1" name="visibility" id="visibility">
+            <option value="1">Доступен для просмотра</option>
+            <option  value="0" >Не доступен для просмотра</option>
+          </select>
+    </div>
+<!-- <div class="custom-control custom-checkbox">
     <input type="checkbox" class="custom-control-input" id="visibility" name="visibility" checked="true">
     <label class="custom-control-label" for="visibility">Видимость абонента в справочнике</label>
-  </div>
+  </div> -->
 <!--   <hr>
 
   <div class="custom-control custom-checkbox">
