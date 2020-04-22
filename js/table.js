@@ -84,9 +84,9 @@ function get_number(id, number) {
     <table id="user_data" class="table table-bordered table-striped">\
     <thead>\
     <tr class="row_drag">\
-    <th data-name-col="id">ID</th>\
-    <th data-name-col="raspred_name">Распределение</th>\
-    <th data-name-col="b"></th>\
+    <th class="row_drag" data-name-col="id">ID</th>\
+    <th class="row_drag" data-name-col="raspred_name">Распределение</th>\
+    <th></th>\
     </tr>\
     </thead>\
     </table>\
@@ -110,9 +110,9 @@ function get_number(id, number) {
     <table id="user_data" class="table table-bordered table-striped">\
     <thead>\
     <tr class="row_drag">\
-    <th data-name-col="id">ID</th>\
-    <th data-name-col="type_name">Тип линии</th>\
-    <th data-name-col="b"></th>\
+    <th class="row_drag" data-name-col="id">ID</th>\
+    <th class="row_drag" data-name-col="type_name">Тип линии</th>\
+    <th></th>\
     </tr>\
     </thead>\
     </table>\
@@ -133,9 +133,9 @@ function get_number(id, number) {
     <table id="user_data" class="table table-bordered table-striped">\
     <thead>\
     <tr class="row_drag">\
-    <th data-name-col="id">ID</th>\
-    <th data-name-col="unit_name">Управление</th>\
-    <th data-name-col="b"></th>\
+    <th class="row_drag" data-name-col="id">ID</th>\
+    <th class="row_drag" data-name-col="unit_name">Управление</th>\
+    <th></th>\
     </tr>\
     </thead>\
     </table>\
@@ -156,9 +156,9 @@ function get_number(id, number) {
     <table id="user_data" class="table table-bordered table-striped">\
     <thead>\
     <tr class="row_drag">\
-    <th data-name-col="id">ID</th>\
-    <th data-name-col="department_name">Отделы/Бюро</th>\
-    <th data-name-col="b"></th>\
+    <th class="row_drag" data-name-col="id">ID</th>\
+    <th class="row_drag" data-name-col="department_name">Отделы/Бюро</th>\
+    <th></th>\
     </tr>\
     </thead>\
     </table>\
@@ -179,9 +179,9 @@ function get_number(id, number) {
     <table id="user_data" class="table table-bordered table-striped">\
     <thead>\
     <tr class="row_drag">\
-    <th data-name-col="id">ID</th>\
-    <th data-name-col="sector_name">Сектор</th>\
-    <th data-name-col="b"></th>\
+    <th class="row_drag" data-name-col="id">ID</th>\
+    <th class="row_drag" data-name-col="sector_name">Сектор</th>\
+    <th></th>\
     </tr>\
     </thead>\
     </table>\
@@ -202,9 +202,9 @@ function get_number(id, number) {
     <table id="user_data" class="table table-bordered table-striped">\
     <thead>\
     <tr class="row_drag">\
-    <th data-name-col="id">ID</th>\
-    <th data-name-col="filial_name">Филиал</th>\
-    <th data-name-col="b"></th>\
+    <th class="row_drag" data-name-col="id">ID</th>\
+    <th class="row_drag" data-name-col="filial_name">Филиал</th>\
+    <th></th>\
     </tr>\
     </thead>\
     </table>\
@@ -225,9 +225,9 @@ function get_number(id, number) {
     <table id="user_data" class="table table-bordered table-striped">\
     <thead>\
     <tr class="row_drag">\
-    <th data-name-col="id">ID</th>\
-    <th data-name-col="area_name">Площадка</th>\
-    <th data-name-col="b"></th>\
+    <th class="row_drag" data-name-col="id">ID</th>\
+    <th class="row_drag" data-name-col="area_name">Площадка</th>\
+    <th></th>\
     </tr>\
     </thead>\
     </table>\
@@ -277,11 +277,11 @@ function get_number(id, number) {
     <table id="user_data" class="table table-bordered table-striped">\
     <thead>\
     <tr class="row_drag">\
-    <th data-name-col="id">ID абонента</th>\
-    <th data-name-col="ncatalog_number">Номер</th>\
-    <th data-name-col="ncatalog_name">Имя абонента</th>\
-    <th data-name-col="ncatalog_cabinet">Кабинет</th>\
-    <th data-name-col="print"></th>\
+    <th class="row_drag" data-name-col="id">ID абонента</th>\
+    <th class="row_drag" data-name-col="ncatalog_number">Номер</th>\
+    <th class="row_drag" data-name-col="ncatalog_name">Имя абонента</th>\
+    <th class="row_drag" data-name-col="ncatalog_cabinet">Кабинет</th>\
+    <th></th>\
     </tr>\
     </thead>\
     </table>\
@@ -317,17 +317,6 @@ function get_number(id, number) {
       "serverSide" : true,
       "info": true,
       "searching": true,
-      // responsive: {
-      //       details: {
-      //           display: $.fn.dataTable.Responsive.display.modal( {
-      //               header: function ( row ) {
-      //                   var data = row.data();
-      //                   return 'Details for '+data[0]+' '+data[1];
-      //               }
-      //           } ),
-      //           renderer: $.fn.dataTable.Responsive.renderer.tableAll()
-      //       }
-      //   },
       "language": {
         "info": "Показана страница _PAGE_ из _PAGES_ страниц",
         "lengthMenu": "Показать _MENU_ строк на страницу",
@@ -344,9 +333,9 @@ function get_number(id, number) {
       },
       "order" : [0],
     // "deferLoading": [ 57, 100 ],
-    "search": {
-      "search": number
-    },
+    // "search": {
+    //   "search": number
+    // },
     "lengthMenu": [[10, 25, 50, 100, -1], [10, 25, 50, 100, "All"]],
     "ajax" : {
       url:"fetch.php",
@@ -359,7 +348,7 @@ function get_number(id, number) {
   function getAllColName() {
     var colName=[];
     var i = 0;  
-    $('.row_drag>th').each(function() { 
+    $('.row_drag>th.row_drag').each(function() { 
         colName.push($(this).attr("data-name-col"));
         i++;
     }); 

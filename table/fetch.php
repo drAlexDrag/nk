@@ -1,7 +1,7 @@
 <?php
 $connect = mysqli_connect("localhost", "dron", "port2100", "newkross");
 $columns=json_decode($_POST['col'], true);
-// var_dump($columns);
+
 $table_name=$_POST['table_name'];
 $query = "SELECT * FROM ". $_POST['table_name'];
 if(isset($_POST["search"]["value"]))
@@ -38,43 +38,49 @@ $number_filter_row = mysqli_num_rows(mysqli_query($connect, $query));
 $result = mysqli_query($connect, $query . $query1);
 
 $data = array();
-
-while($row = mysqli_fetch_array($result))
+// var_dump($result);
+while($row = mysqli_fetch_array($result, MYSQLI_ASSOC))
+// while($row = mysqli_fetch_row($result))
 {
 	$coun_row=count($row);
-	// var_dump($row);
 	$sub_array = array();
 	switch ($table_name) {
-		case 'ncatalog'://Для ncatalog
+		case 'ncatalog':
 			# code...
-		for ($i = 0; $i < $coun_row; $i++) {
-		if($i==($coun_row-18))
+		// for ($i = 0; $i < ($coun_row-7); $i++) {
+		// $sub_array[] = '<div class="update" onclick="editSub(' .$row["id"]. ')" data-id="'.$row["id"].'" data-table="'.$table_name.'" data-column="'.$columns[0].'">' . $row["id"] . '<span class="icon">Ü</span></div>';
+		// if($row["free"]=="1"){$sub_array[] = '<div style="color:blue;" class="update krossdata" data-id="'.$row["id"].'" data-table="'.$table_name.'" data-column="'.$columns[1].'" name="'.$row["id"].'" title="Двойной клик для просмотра исходящих данных по Дзержинке" onclick="get_number('.$row["id"].', '. $row["ncatalog_number"] .')">' . $row["ncatalog_number"] . '</div>';}
+		// 	else{$sub_array[] = '<div style="color:red;" class="update krossdata" data-id="'.$row["id"].'" data-table="'.$table_name.'" data-column="'.$columns[1].'" name="'.$row["id"].'" title="Двойной клик для просмотра исходящих данных по Дзержинке" onclick="get_number('.$row["id"].', '. $row["ncatalog_number"] .')">' . $row["ncatalog_number"] . '</div>';}
+	// }
+		for ($i = 0; $i < ($coun_row-6); $i++) {
+		if($i==($coun_row-7))
 			{$sub_array[] ='<button type="button" name="delete" class="btn-sm btn-danger btn-xs delete" id="'.$row["id"].'" data-table="'.$table_name.'">Удалить</button>';}
 		elseif($i==0)
-		{$sub_array[] = '<div class="update" onclick="editSub(' .$row["id"]. ')" data-id="'.$row["id"].'" data-table="'.$table_name.'" data-column="'.$columns[$i].'">' . $row[$i] . '<span class="icon">Ü</span></div>';}
+		{$sub_array[] = '<div class="update" onclick="editSub(' .$row["id"]. ')" data-id="'.$row["id"].'" data-table="'.$table_name.'" data-column="'.$columns[$i].'">' . $row["id"] . '<span class="icon">Ü</span></div>';}
 		elseif($i==1)
 		{
-			if($row["free"]=="1"){$sub_array[] = '<div style="color:blue;" class="update krossdata" data-id="'.$row["id"].'" data-table="'.$table_name.'" data-column="'.$columns[$i].'" name="'.$row["id"].'" title="Двойной клик для просмотра исходящих данных по Дзержинке" onclick="get_number('.$row["id"].', '. $row["ncatalog_number"] .')">' . $row[$i] . '</div>';}
-			else{$sub_array[] = '<div style="color:red;" class="update krossdata" data-id="'.$row["id"].'" data-table="'.$table_name.'" data-column="'.$columns[$i].'" name="'.$row["id"].'" title="Двойной клик для просмотра исходящих данных по Дзержинке" onclick="get_number('.$row["id"].', '. $row["ncatalog_number"] .')">' . $row[$i] . '</div>';}
+			if($row["free"]=="1"){$sub_array[] = '<div style="color:blue;" class="update krossdata" data-id="'.$row["id"].'" data-table="'.$table_name.'" data-column="'.$columns[$i].'" name="'.$row["id"].'" title="Двойной клик для просмотра исходящих данных по Дзержинке" onclick="get_number('.$row["id"].', '. $row["ncatalog_number"] .')">' . $row["ncatalog_number"] . '</div>';}
+			else{$sub_array[] = '<div style="color:red;" class="update krossdata" data-id="'.$row["id"].'" data-table="'.$table_name.'" data-column="'.$columns[$i].'" name="'.$row["id"].'" title="Двойной клик для просмотра исходящих данных по Дзержинке" onclick="get_number('.$row["id"].', '. $row["ncatalog_number"] .')">' . $row["ncatalog_number"] . '</div>';}
 		}
 		elseif($i==2)
 		{
-			if($row["visibility"]=="0"){$sub_array[] = '<div style="color:red;" contenteditable class="update" data-id="'.$row["id"].'" data-table="'.$table_name.'" data-column="ncatalog_name" title="Не доступен для просмотра в справочнике"> ' . $row[$i] . '</div>';}
-			else{$sub_array[] = '<div style="color:blue;" contenteditable class="update" data-id="'.$row["id"].'" data-table="'.$table_name.'" data-column="ncatalog_name" title="Доступен для просмотра в справочнике"> ' . $row[$i] . '</div>';}
+			if($row["visibility"]=="0"){$sub_array[] = '<div style="color:red;" contenteditable class="update" data-id="'.$row["id"].'" data-table="'.$table_name.'" data-column="ncatalog_name" title="Не доступен для просмотра в справочнике"> ' . $row["ncatalog_name"] . '</div>';}
+			else{$sub_array[] = '<div style="color:blue;" contenteditable class="update" data-id="'.$row["id"].'" data-table="'.$table_name.'" data-column="ncatalog_name" title="Доступен для просмотра в справочнике"> ' . $row["ncatalog_name"] . '</div>';}
 		}
-		else{$sub_array[] = '<div contenteditable  class="update" data-id="'.$row["id"].'" data-table="'.$table_name.'" data-column="'.$columns[$i].'">' . $row[$i] . '</div>';}
+		else{$sub_array[] = '<div contenteditable  class="update" data-id="'.$row["id"].'" data-table="'.$table_name.'" data-column="'.$columns[3].'">' . $row["ncatalog_cabinet"] . '</div>';}
 	}
 			break;
 		
-		default://Для остальных таблиц по дефолту
+		default:
 			# code...
-		for ($i = 0; $i < $coun_row; $i++) {
-		if($i==($coun_row-4))
+		$namecol=$table_name."_name";
+		for ($i = 0; $i < ($coun_row+1); $i++) {
+		if($i==($coun_row))
 		{$sub_array[] ='<button type="button" name="delete" class="btn-sm btn-danger btn-xs delete" id="'.$row["id"].'" data-table="'.$table_name.'">Удалить</button>';}
 	elseif($i==0)
-		{$sub_array[] = '<div class="update" data-id="'.$row["id"].'" data-table="'.$table_name.'" data-column="'.$columns[$i].'">' . $row[$i] . '</div>';}
+		{$sub_array[] = '<div class="update" data-id="'.$row["id"].'" data-table="'.$table_name.'" data-column="'.$columns[$i].'">' . $row["id"] . '</div>';}
 		else
-			{$sub_array[] = '<div contenteditable  class="update" data-id="'.$row["id"].'" data-table="'.$table_name.'" data-column="'.$columns[$i].'">' . $row[$i] . '</div>';}
+			{$sub_array[] = '<div contenteditable  class="update" data-id="'.$row["id"].'" data-table="'.$table_name.'" data-column="'.$columns[$i].'">' . $row[$namecol] . '</div>';}
 	}
 			break;
 	}
