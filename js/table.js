@@ -238,34 +238,35 @@ function get_number(id, number) {
     col=JSON.stringify(col);
     fetch_data(table_name, col);
   }
-  function fetch_table(table_name, col){
-    // $("#content").html(content);
-    var dataTable = $('#user_data').DataTable({
-      "processing" : true,
-      "serverSide" : true,
-      "info": true,
-      "searching": true,
-      "language": {
-        "info": "Показана страница _PAGE_ из _PAGES_ страниц",
-        "lengthMenu": "Показать _MENU_ строк на страницу",
-        "infoFiltered": " - отфильтровано из _MAX_ записей",
-        "zeroRecords": "Ничего похожего не найдено",
-        "infoEmpty": "Нет записей для показа",
-        "search": "Поиск:",
-        "paginate": {
-          "previous": "Предыдущая",
-          "next": "Следующая",
-        }
-      },
-      "order" : [0],
-      "lengthMenu": [[20, 50, 100, -1], [20, 50, 100, "All"]],
-      "ajax" : {
-        url:"fetch_table.php",
-        data:{table_name:table_name, col:col},
-        type:"POST"
-      }
-    });
-  }
+
+  // function fetch_table(table_name, col){
+  //   // $("#content").html(content);
+  //   var dataTable = $('#user_data').DataTable({
+  //     "processing" : true,
+  //     "serverSide" : true,
+  //     "info": true,
+  //     "searching": true,
+  //     "language": {
+  //       "info": "Показана страница _PAGE_ из _PAGES_ страниц",
+  //       "lengthMenu": "Показать _MENU_ строк на страницу",
+  //       "infoFiltered": " - отфильтровано из _MAX_ записей",
+  //       "zeroRecords": "Ничего похожего не найдено",
+  //       "infoEmpty": "Нет записей для показа",
+  //       "search": "Поиск:",
+  //       "paginate": {
+  //         "previous": "Предыдущая",
+  //         "next": "Следующая",
+  //       }
+  //     },
+  //     "order" : [0],
+  //     "lengthMenu": [[20, 50, 100, -1], [20, 50, 100, "All"]],
+  //     "ajax" : {
+  //       url:"fetch_table.php",
+  //       data:{table_name:table_name, col:col},
+  //       type:"POST"
+  //     }
+  //   });
+  // }
   function editNumber(number) {
     // body...
     var content='<h1 align="center">Таблица абонентов</h1>\
