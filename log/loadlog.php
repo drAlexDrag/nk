@@ -3,7 +3,6 @@ $connect = mysqli_connect("localhost", "dron", "port2100", "newkross");
 $columns=json_decode($_POST['col'], true);
 $table_name=$_POST['table_name'];
 $query = "SELECT * FROM ". $_POST['table_name'];
-
 if(isset($_POST["search"]["value"]))
 {
 	$col=json_decode($_POST['col'], true);

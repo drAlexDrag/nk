@@ -1,16 +1,14 @@
 <?php
 $connect = mysqli_connect("localhost", "dron", "port2100", "newkross");
 $columns=json_decode($_POST['col'], true);
-
 $table_name=$_POST['table_name'];
 $query = "SELECT * FROM ". $_POST['table_name'];
 if(isset($_POST["search"]["value"]))
 {
 	$col=json_decode($_POST['col'], true);
-	//unset($col[0]);//при поиске без id
+	// unset($col[0]);//при поиске без id
  $query .= ' WHERE '.array_shift($col).' LIKE "%'.$_POST["search"]["value"].'%"';
  // unset($col[0]);
- // var_dump($col);
  foreach($col as $row)
 {
 $query .=' OR '.$row.' LIKE "%'.$_POST["search"]["value"].'%" ';
@@ -19,7 +17,7 @@ $query .=' OR '.$row.' LIKE "%'.$_POST["search"]["value"].'%" ';
 
 if(isset($_POST["order"]))
 {
- $query .= 'ORDER BY '.$columns[$_POST['order']['0']['column']].' '.$_POST['order']['0']['dir'].''; 
+ $query .= 'ORDER BY '.$columns[$_POST['order']['0']['column']].' '.$_POST['order']['0']['dir'].'  ';//ПРобелы!!!!!!!!! 
 }
 else
 {
@@ -47,11 +45,6 @@ while($row = mysqli_fetch_array($result, MYSQLI_ASSOC))
 	switch ($table_name) {
 		case 'ncatalog':
 			# code...
-		// for ($i = 0; $i < ($coun_row-7); $i++) {
-		// $sub_array[] = '<div class="update" onclick="editSub(' .$row["id"]. ')" data-id="'.$row["id"].'" data-table="'.$table_name.'" data-column="'.$columns[0].'">' . $row["id"] . '<span class="icon">Ü</span></div>';
-		// if($row["free"]=="1"){$sub_array[] = '<div style="color:blue;" class="update krossdata" data-id="'.$row["id"].'" data-table="'.$table_name.'" data-column="'.$columns[1].'" name="'.$row["id"].'" title="Двойной клик для просмотра исходящих данных по Дзержинке" onclick="get_number('.$row["id"].', '. $row["ncatalog_number"] .')">' . $row["ncatalog_number"] . '</div>';}
-		// 	else{$sub_array[] = '<div style="color:red;" class="update krossdata" data-id="'.$row["id"].'" data-table="'.$table_name.'" data-column="'.$columns[1].'" name="'.$row["id"].'" title="Двойной клик для просмотра исходящих данных по Дзержинке" onclick="get_number('.$row["id"].', '. $row["ncatalog_number"] .')">' . $row["ncatalog_number"] . '</div>';}
-	// }
 		for ($i = 0; $i < ($coun_row-6); $i++) {
 		if($i==($coun_row-7))
 			{$sub_array[] ='<button type="button" name="delete" class="btn-sm btn-danger btn-xs delete" id="'.$row["id"].'" data-table="'.$table_name.'">Удалить</button>';}
