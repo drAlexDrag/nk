@@ -1,3 +1,6 @@
+#user_data_filter input{
+  width: 500px;
+}
 .sector {
   font-size: 1vw;
     white-space: nowrap;

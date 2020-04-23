@@ -238,35 +238,6 @@ function get_number(id, number) {
     col=JSON.stringify(col);
     fetch_data(table_name, col);
   }
-
-  // function fetch_table(table_name, col){
-  //   // $("#content").html(content);
-  //   var dataTable = $('#user_data').DataTable({
-  //     "processing" : true,
-  //     "serverSide" : true,
-  //     "info": true,
-  //     "searching": true,
-  //     "language": {
-  //       "info": "Показана страница _PAGE_ из _PAGES_ страниц",
-  //       "lengthMenu": "Показать _MENU_ строк на страницу",
-  //       "infoFiltered": " - отфильтровано из _MAX_ записей",
-  //       "zeroRecords": "Ничего похожего не найдено",
-  //       "infoEmpty": "Нет записей для показа",
-  //       "search": "Поиск:",
-  //       "paginate": {
-  //         "previous": "Предыдущая",
-  //         "next": "Следующая",
-  //       }
-  //     },
-  //     "order" : [0],
-  //     "lengthMenu": [[20, 50, 100, -1], [20, 50, 100, "All"]],
-  //     "ajax" : {
-  //       url:"fetch_table.php",
-  //       data:{table_name:table_name, col:col},
-  //       type:"POST"
-  //     }
-  //   });
-  // }
   function editNumber(number) {
     // body...
     var content='<h1 align="center">Таблица абонентов</h1>\
@@ -287,18 +258,6 @@ function get_number(id, number) {
     </thead>\
     </table>\
     </div>';
-    // <tfoot>\<th class="row_drag" data-name-col="unit_id">Управление</th>\
-    //  <tr>\
-    //  <th>ID абонента</th>\
-    //  <th>Номер</th>\
-    //    <th>Имя абонента</th>\
-    //    <th>Кабинет</th>\
-    //    <th></th>\
-    //  </tr>\
-    //  </tfoot>\
-    // var col=["ncatalog_number", "ncatalog_name", "ncatalog_cabinet"];
-    // var table_name="ncatalog";
-    // fetch_data(content, table_name, number);
     $("#content").html(content);
     var table_name="ncatalog";
     var col=getAllColName();
@@ -432,15 +391,6 @@ function get_number(id, number) {
       html += '</tr>';
       $('#user_data tbody').prepend(html);}
     });
-  // $('#add').click(function(){
-  //   alert ('#add');
-  //  var html = '<tr>';
-  //  html += '<td contenteditable id="data1"></td>';
-  //  html += '<td contenteditable id="data2"></td>';
-  //  html += '<td><button type="button" name="insert" id="insert" class="btn btn-success btn-xs">Insert</button></td>';
-  //  html += '</tr>';
-  //  $('#user_data tbody').prepend(html);
-  // });
   
   $(document).on('click', '#insert', function(){
    // var id = $('#data1').text();
@@ -564,22 +514,7 @@ function get_number(id, number) {
       }, 10000);
     }
   });
-////////////////////////
-// function editSub(id) {
-//   $('#example').DataTable( {
-//         responsive: {
-//             details: {
-//                 display: $.fn.dataTable.Responsive.display.modal( {
-//                     header: function ( row ) {
-//                         var data = row.data();
-//                         return 'Details for '+data[0]+' '+data[1];
-//                     }
-//                 } ),
-//                 renderer: $.fn.dataTable.Responsive.renderer.tableAll()
-//             }
-//         }
-//     } );}
-////////////////////////
+
   function editSub(id) {
   // body...
   $("#editSub").modal("show");
@@ -605,12 +540,6 @@ function get_number(id, number) {
       $('#sector').attr({"data-table-id":data.sector});
       $('#visibility').val(data.visibility);
       $('#free').val(data.free);
-//       var val = getRadioVal( document.getElementById('myModalForm'), 'freebusy' );
-// alert(val);
-      // if(data.free=="0"){$('#free').attr('checked', true)}
-      // else{$('#free').attr('checked', false)}
-    //   if(data.visibility=="0"){$('#visibility').attr('checked', false)}
-    //   else{$('#visibility').attr('checked', true)}
     }
 })
   .done(function() {
@@ -642,20 +571,12 @@ $(document).on('keyup', '.autoListNcatalog', function(){//потом перед�
   var idinput=event.target.id;
   input=event.target.id;
   var tablename = event.target.dataset.table;
-  // console.log("onkeyup: Таблица---", tablename+'\n'+
-  //   "Инпут---", idinput+'\n'+
-  //   "Значение---", $(this).val()+'\n'+
-  //   "Id Значения---", $(this).attr("data-table-id"));
   var query = $(this).val();
   var iddatatable = $(this).attr("data-table-id");
   var columnname=tablename+"_name";
-  // if (idinput=="number"){columnname=tablename+"_number";}
-  // console.log("onkeyup: Имя столбца", columnname);
   idinput='#'+idinput;
   $(idinput).attr({"data-table-id":"1"});
   $('#result').remove();
-  // $(idinput).addClass('alert alert-danger');
-  // btnblock();
   autoListNcatalog(tablename, idinput, query, columnname, iddatatable, input);
 });
 function autoListNcatalog(tablename, idinput, query, columnname, iddatatable, input) {
@@ -693,23 +614,19 @@ function autoListNcatalog(tablename, idinput, query, columnname, iddatatable, in
   })
 }
 function updateKrossData(updateData){
-  // debugger;
   var idinput=updateData.getAttribute('data-idinput');
   console.log('data-idinput-----------------', idinput);
   var idinput="#"+idinput;
   $(idinput).attr({"data-table-id":updateData.getAttribute('data-idname')});
   $(idinput).val(updateData.getAttribute('data-value'));
   $(idinput).removeClass('alert alert-danger');
-
   $('#result').remove();
-  // btnblock();
 }
 function btnblock(){
 
   if(!($("input").hasClass('alert-danger')))
   {
     console.log("Можно добавить данные");
-      // $('#result_auto').remove();
       $(".btn-block").show(1000);
     }else{
       console.log("Нельзя добавить данные");
@@ -725,10 +642,6 @@ function btnblock(){
     var sector_id=$('#sector').attr("data-table-id");
     var free=$('#free').val();
     var visibility=$('#visibility').val();
-//     if ($('#free').is(":checked")){free="0";}
-//     else {free="1";}
-// if ($('#visibility').is(":checked")){visibility="1";}
-// else {visibility="0";}
    var updatedata={
       action: "update",
       id: id,
@@ -766,10 +679,7 @@ function btnblock(){
         .always(function() {
           console.log("complete");
         });
-        // var href=location.href;
-         var load_number=href+'?number='+$('#number').val();
-         location.replace(load_number);
-         // setTimeout(function(){ location.replace(href); }, 5000);
-         // console.log(location.href);
+         // var load_number=href+'?number='+$('#number').val();
+         // location.replace(load_number);
       }
  // });

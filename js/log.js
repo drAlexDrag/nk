@@ -20,16 +20,16 @@ function loadLogKross() {
     <th data-name-col="datechange">Дата</th>\
     <th data-name-col="data_id">ID Данных</th>\
     <th data-name-col="data_name">Данные</th>\
-    <th data-name-col="old_raspred_name">Распределение old</th>\
-    <th data-name-col="new_raspred_name">Распределение new</th>\
-    <th data-name-col="old_number">Номер old</th>\
-    <th data-name-col="new_number">Номер new</th>\
-    <th data-name-col="old_ncatalog_name">Имя old</th>\
-    <th data-name-col="new_ncatalog_name">Имя new</th>\
-    <th data-name-col="old_type_name">Тип old</th>\
-    <th data-name-col="new_type_name">Тип new</th>\
-    <th data-name-col="old_comment">Комментарий old</th>\
-    <th data-name-col="new_comment">Комментарий new</th>\
+    <th data-name-col="old_raspred_name">Распределение Старое значение</th>\
+    <th data-name-col="new_raspred_name">Распределение Новое значение</th>\
+    <th data-name-col="old_number">Номер Старое значение</th>\
+    <th data-name-col="new_number">Номер Новое значение</th>\
+    <th data-name-col="old_ncatalog_name">Имя Старое значение</th>\
+    <th data-name-col="new_ncatalog_name">Имя Новое значение</th>\
+    <th data-name-col="old_type_name">Тип Старое значение</th>\
+    <th data-name-col="new_type_name">Тип Новое значение</th>\
+    <th data-name-col="old_comment">Комментарий Старое значение</th>\
+    <th data-name-col="new_comment">Комментарий Новое значение</th>\
     <th data-name-col="area_name">Журнал</th>\
     <th data-name-col="user">Пользователь</th>\
     </tr>\
@@ -59,8 +59,8 @@ function loadLogTables() {
     <th data-name-col="datechange">Дата</th>\
     <th data-name-col="tabl">Таблица</th>\
     <th data-name-col="idval">ID Значения</th>\
-    <th data-name-col="old_val">old Значение</th>\
-    <th data-name-col="new_val">new Значение</th>\
+    <th data-name-col="old_val">Старое значение</th>\
+    <th data-name-col="new_val">Новое значение</th>\
     <th data-name-col="user">Пользователь</th>\
     </tr>\
     </thead>\
@@ -89,10 +89,10 @@ function loadLogNcatalog() {
     <th data-name-col="datechange">Дата</th>\
     <th data-name-col="ncatalog_id">ID в каталоге</th>\
     <th data-name-col="ncatalog_number">Номер</th>\
-    <th data-name-col="old_ncatalog_name">Имя old</th>\
-    <th data-name-col="new_ncatalog_name">Имя new</th>\
-    <th data-name-col="old_ncatalog_cabinet">Кабинет old</th>\
-    <th data-name-col="new_ncatalog_cabinet">Кабинет new</th>\
+    <th data-name-col="old_ncatalog_name">Имя Старое значение</th>\
+    <th data-name-col="new_ncatalog_name">Имя Новое значение</th>\
+    <th data-name-col="old_ncatalog_cabinet">Кабинет Старое значение</th>\
+    <th data-name-col="new_ncatalog_cabinet">Кабинет Новое значение</th>\
     <th data-name-col="user">Пользователь</th>\
     </tr>\
     </thead>\
@@ -111,19 +111,34 @@ function loadLog(table_name, col){
         "info": true,
         "searching": true,
         "language": {
-            "info": "Показана страница _PAGE_ из _PAGES_ страниц",
-            "lengthMenu": "Показать _MENU_ строк на страницу",
-            "infoFiltered": " - отфильтровано из _MAX_ записей",
-            "zeroRecords": "Ничего похожего не найдено",
-            "infoEmpty": "Нет записей для показа",
-            "loadingRecords": "Пожалуйста, подождите - идет загрузка ...",
-            "processing": "Обработка ...",
-            "search": "Поиск:",
-            "paginate": {
-                "previous": "Предыдущая",
-                "next": "Следующая",
-            }
+        "processing": "Подождите...",
+        "search": "Поиск:",
+        "lengthMenu": "Показать _MENU_ записей",
+        "info": "Записи с _START_ до _END_ из _TOTAL_ записей",
+        "infoEmpty": "Записи с 0 до 0 из 0 записей",
+        "infoFiltered": "(отфильтровано из _MAX_ записей)",
+        "infoPostFix": "",
+        "loadingRecords": "Загрузка записей...",
+        "zeroRecords": "Записи отсутствуют.",
+        "emptyTable": "В таблице отсутствуют данные",
+        "paginate": {
+          "first": "Первая",
+          "previous": "Предыдущая",
+          "next": "Следующая",
+          "last": "Последняя"
         },
+        "aria": {
+          "sortAscending": ": активировать для сортировки столбца по возрастанию",
+          "sortDescending": ": активировать для сортировки столбца по убыванию"
+        },
+        "select": {
+          "rows": {
+            "_": "Выбрано записей: %d",
+            "0": "Кликните по записи для выбора",
+            "1": "Выбрана одна запись"
+          }
+        }
+      },
         "order" : [[0,'desc']],
     // "deferLoading": [ 57, 100 ],
     // "search": {

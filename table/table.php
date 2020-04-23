@@ -89,7 +89,7 @@
   </div>
 <div class="container-fluid" id="modalWindow"></div>
   <script src="/js/table.js"></script>
-  <script src="/js/all.js"></script>
+  <!-- <script src="/js/all.js"></script> -->
 <!--    <script>document.write('<script src="http://' + (location.host || 'localhost').split(':')[0] + ':35729/livereload.js?snipver=1"></' + 'script>')</script> -->
 </body>
 </html>

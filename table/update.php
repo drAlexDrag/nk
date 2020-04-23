@@ -56,7 +56,7 @@ if(isset($_POST["id"]))
 	R::store($logtable);
 }
 
-    echo 'Информация обновлена: '.$oldvalue.'===>'.$value;
+    echo 'Информация обновлена: '.$oldvalue.' ===> '.$value;
 } catch (RedBeanPHP\RedException\SQL $e) {
 
     echo $e->getMessage();
