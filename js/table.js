@@ -287,7 +287,7 @@ function get_number(id, number) {
     </thead>\
     </table>\
     </div>';
-    // <tfoot>\
+    // <tfoot>\<th class="row_drag" data-name-col="unit_id">Управление</th>\
     //  <tr>\
     //  <th>ID абонента</th>\
     //  <th>Номер</th>\
@@ -308,30 +308,42 @@ function get_number(id, number) {
 
   function fetch_data(table_name, col, number)
   {
-    // $("#content").html(content);
-    // var ncatalog_number="ncatalog_number";
-    // var ncatalog_name="ncatalog_name";
-    // var ncatalog_cabinet="ncatalog_cabinet";
-    // var asd="7648597";
     var dataTable = $('#user_data').DataTable({
       "processing" : true,
       "serverSide" : true,
       "info": true,
       "searching": true,
+      // "dom": '<"toolbar">frtip',
       "language": {
-        "info": "Показана страница _PAGE_ из _PAGES_ страниц",
-        "lengthMenu": "Показать _MENU_ строк на страницу",
-        "infoFiltered": " - отфильтровано из _MAX_ записей",
-        "zeroRecords": "Ничего похожего не найдено",
-        "infoEmpty": "Нет записей для показа",
-        "loadingRecords": "Пожалуйста, подождите - идет загрузка ...",
-        "processing": "Обработка ...",
+        "processing": "Подождите...",
         "search": "Поиск:",
+        "lengthMenu": "Показать _MENU_ записей",
+        "info": "Записи с _START_ до _END_ из _TOTAL_ записей",
+        "infoEmpty": "Записи с 0 до 0 из 0 записей",
+        "infoFiltered": "(отфильтровано из _MAX_ записей)",
+        "infoPostFix": "",
+        "loadingRecords": "Загрузка записей...",
+        "zeroRecords": "Записи отсутствуют.",
+        "emptyTable": "В таблице отсутствуют данные",
         "paginate": {
+          "first": "Первая",
           "previous": "Предыдущая",
           "next": "Следующая",
+          "last": "Последняя"
+        },
+        "aria": {
+          "sortAscending": ": активировать для сортировки столбца по возрастанию",
+          "sortDescending": ": активировать для сортировки столбца по убыванию"
+        },
+        "select": {
+          "rows": {
+            "_": "Выбрано записей: %d",
+            "0": "Кликните по записи для выбора",
+            "1": "Выбрана одна запись"
+          }
         }
       },
+      stateSave: true,
       "order" : [0],
     // "deferLoading": [ 57, 100 ],
     // "search": {
@@ -344,6 +356,10 @@ function get_number(id, number) {
       type:"POST"
     }
   });
+    // $("div.toolbar").html('<b>Custom tool bar! Text/images etc.</b>');
+    // if (table_name=="ncatalog"){
+    //   dataTable.columns( [4] ).visible( false );
+    // }
   }
   //собираем все столбцы таблицы
   function getAllColName() {
