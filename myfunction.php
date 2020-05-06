@@ -140,13 +140,14 @@ function OutputTbodyCatalog($row){
 	<td>'.$row["department_name"].'</td>
 	<td>'.$row["ncatalog_cabinet"].'</td>
 	
-	</tr>';//<td>'.$row["filial_name"].'</td>
+	</tr>';
+	//<td>'.$row["filial_name"].'</td>
 	return $outputTbody;
 }
 function BeansNull($catalogBeans, $searchString){
 	$output='';
 	$output='<br><div class="alert alert-danger">
-	Информация по : <strong>'.$searchString.'</strong><br>Отсутствует в справочнике<hr><button type="button" class="btn btn-primary" onclick="catalogAdd('.$searchString.')">Добавить абонента в справочник</button></div>';
+	Информация по : <strong>'.$searchString.'</strong><br>Отсутствует в справочнике<hr><button type="button" class="btn btn-primary" onclick="tablnumber('.$row["ncatalog_number"].')">Добавить номер в справочник</button></div>';
 	return $output;
 }
 ?>

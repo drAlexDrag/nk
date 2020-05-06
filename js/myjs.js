@@ -34,7 +34,8 @@ function tabl() {
 function tablnumber(number) {
   // body...
   // var number = $('#number').val();
-  window.open('./table/table.php?number='+number);
+  // window.open('./table/table.php?number='+number);
+  window.open('./table/table.php');
 }
 function catalogOpen()
 { 

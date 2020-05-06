@@ -33,15 +33,15 @@ $debug = new PHPDebug();
 // }
 for ($x=1; $x<3155; $x++) {
 // $x=3000;
-	$cab = R::getAll('SELECT * FROM ncatalog WHERE id=?', [$x]);
+	$outbeans = R::getAll('SELECT * FROM ncatalog WHERE id=?', [$x]);
 	
-	foreach($cab as $rows)
+	foreach($outbeans as $rows)
 {
    $debug->debug($x, null, LOG);
-   $debug->debug($rows["ncatalog_cabinet"], null, LOG);
+   $debug->debug($rows["id"], null, LOG);
    $ncatalogid = $rows["id"];
-   $cabout = $rows["ncatalog_number"];
-   R::exec("UPDATE krossdata set cabinet=$ncatalogid where number='$cabout'");
+   $number = $rows["ncatalog_number"];
+   R::exec("UPDATE krossdata_c set ncatalog_id=$ncatalogid where number='$number'");
 
 }
 }

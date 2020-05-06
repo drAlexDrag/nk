@@ -86,8 +86,16 @@
     border: 1px solid #ccc;
     border-radius: 4px;
   }
+.tooltip{
+  font-size: 1.5rem;
+}
+.tooltip.show {
+  opacity: 1;
+}
 .tooltip-inner {
   min-width: 500px;
+  color: #000;
+  background-color: #ffffff;
 }
 .images-tabl a {
       display: block;

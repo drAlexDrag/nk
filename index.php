@@ -23,10 +23,10 @@ if(isset($_SESSION['loginUser'])):?>
     <!-- <script src="/js/livereload.js"></script> -->
 
   </head>
-  <button onclick="topFunction()" id="myBtn" title="Go to top">Top</button>
+  <!-- <button onclick="topFunction()" id="myBtn" title="Go to top">Top</button> -->
   <body style="font-size: 0.8rem;">
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-      <a class="navbar-brand" href="#">KROSS</a>
+      <a class="navbar-brand" href="#">nKROSS</a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
@@ -72,6 +72,7 @@ if(isset($_SESSION['loginUser'])):?>
           </a>
           <div class="dropdown-menu" aria-labelledby="navbarDropdownAdminLink">
             <a class="dropdown-item" href="#" onclick="usersConfig()">Настройка пользователей</a>
+            <a class="dropdown-item" href="./sverka/sverka.php" target="_blank">Сверка со старой базой по номерам</a>
 
           </div>
         </li>
@@ -89,7 +90,7 @@ if(isset($_SESSION['loginUser'])):?>
   <div class="container-fluid-xl p-1" id="search">
 
   </div>
-  <!-- <button type="button" class="btn btn-info" onclick="gogo()">Start Script</button> -->
+  <!-- <button type="button" class="btn btn-info" onclick="go()">Start Script</button> -->
   <div class="container-fluid-xl" id="content"></div>
 <!--   <a href="#" title="Header" data-toggle="popover" data-placement="bottom" data-content="Content">Bottom</a>
   <a href="#" title="Header" data-toggle="popover" data-placement="left" data-content="Content">Left</a>

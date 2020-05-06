@@ -13,10 +13,14 @@ $(document).ready(function(){
      return b;
    })();
    $("#modalWindow").load("/views/modal_cat.ejs");
-   editNumber();
- 
-   // if (gets['number']!=null)
-   //   {editNumber(gets['number']);}
+   
+ editNumber();
+ //   if (gets['number']!=null)
+ //     {var number=gets['number'];
+ //       editNumber(number);
+ //   // window.location.search='';
+ // }
+ //   else {}
 
 
 
